@@ -1,6 +1,7 @@
 import json
 import re
 import sys
+import os
 
 from core.requester import requester
 from core.log import setup_logger
@@ -9,7 +10,8 @@ logger = setup_logger(__name__)
 
 
 def wafDetector(url, params, headers, GET, delay, timeout):
-    with open(sys.path[0] + '/db/wafSignatures.json', 'r') as file:
+    BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    with open(os.path.join(BASE_PATH, 'db', 'wafSignatures.json'), 'r') as file:    
         wafSignatures = json.load(file)
     # a payload which is noisy enough to provoke the WAF
     noise = '<script>alert("XSS")</script>'

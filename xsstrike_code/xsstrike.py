@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
-
 from __future__ import print_function
+import sys
+import os
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
 
 from core.colors import end, red, white, bad, info
 
@@ -134,7 +140,12 @@ else:
 core.config.globalVariables['headers'] = headers
 core.config.globalVariables['checkedScripts'] = set()
 core.config.globalVariables['checkedForms'] = {}
-core.config.globalVariables['definitions'] = json.loads('\n'.join(reader(sys.path[0] + '/db/definitions.json')))
+
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+
+core.config.globalVariables['definitions'] = json.loads(
+    '\n'.join(reader(os.path.join(BASE_PATH, 'db', 'definitions.json')))
+)
 
 if path:
     paramData = converter(target, target)
