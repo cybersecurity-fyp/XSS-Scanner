@@ -3,10 +3,10 @@ import joblib
 
 # ========= Load models =========
 lr_model = joblib.load("../models/lr_model.pkl")
-lr_tfidf = joblib.load("../models/lr_model_tfidf.pkl")
+lr_tfidf = joblib.load("../models/tfidf_lr.pkl")
 
 rf_model = joblib.load("../models/rf_model.pkl")
-rf_tfidf = joblib.load("../models/rf_model_tfidf.pkl")
+rf_tfidf = joblib.load("../models/tfidf_rf.pkl")
 
 # ========= Sample payloads =========
 payloads = [

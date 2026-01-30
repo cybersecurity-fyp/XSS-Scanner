@@ -23,11 +23,11 @@ y_true = df["label"]   # 1 = malicious, 0 = benign
 models = {
     "LR": {
         "model": joblib.load("../models/lr_model.pkl"),
-        "tfidf": joblib.load("../models/lr_model_tfidf.pkl")
+        "tfidf": joblib.load("../models/tfidf_lr.pkl")
     },
     "RF": {
         "model": joblib.load("../models/rf_model.pkl"),
-        "tfidf": joblib.load("../models/rf_model_tfidf.pkl")
+        "tfidf": joblib.load("../models/tfidf_rf.pkl")
     }
 }
 

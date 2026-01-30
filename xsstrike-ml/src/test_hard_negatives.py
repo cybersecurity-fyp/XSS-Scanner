@@ -15,8 +15,8 @@ df = pd.read_csv("../data/hard_negatives.csv")
 
 X = tfidf.transform(df["payload"])
 probs = model.predict_proba(X)[:, 1]
-#print("\n lr model probs:")
-print("\n rf model probs:")
+#print("\nlogistic regression model probs:")
+print("\nrandom forest model probs:")
 print("\n=== Hard Negative Test ===")
 for payload, p in zip(df["payload"], probs):
     print(f"{p:.3f}  ->  {payload}")
