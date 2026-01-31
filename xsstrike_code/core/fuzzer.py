@@ -11,6 +11,7 @@ from core.log import setup_logger
 
 # ===== ML PREFILTER =====
 from xsstrike_ml.ml_prefilter import is_malicious
+from core.ml_stats import MLStats   # 🔹 NEW
 
 logger = setup_logger(__name__)
 
@@ -18,10 +19,21 @@ logger = setup_logger(__name__)
 def fuzzer(url, params, headers, GET, delay, timeout, WAF, encoding):
     for fuzz in fuzzes:
 
+        # 🔹 Count total generated payloads
+        MLStats.total_payloads += 1
+
         # ===== ML PREFILTER CHECK =====
-        if not is_malicious(fuzz):
-            logger.info(f"[ML-SKIP] {fuzz}")
-            continue
+        try:
+            if not is_malicious(fuzz):
+                MLStats.ml_filtered += 1
+                logger.info(f"[ML-SKIP] {fuzz}")
+                continue
+        except Exception:
+            # Fail-open: do not break scanner
+            pass
+
+        # 🔹 Payload passed ML → sent to target
+        MLStats.sent_to_target += 1
 
         if delay == 0:
             delay = 0
@@ -65,10 +77,7 @@ def fuzzer(url, params, headers, GET, delay, timeout, WAF, encoding):
         # ===== RESPONSE ANALYSIS =====
         if payload.lower() in response.text.lower():
             logger.info(f"[ML-PASS] {fuzz}")
-            #result = '%s[passed]  %s' % (green, end)
         elif str(response.status_code).startswith('2') is False:
             result = '%s[blocked] %s' % (red, end)
         else:
             result = '%s[filtered]%s' % (yellow, end)
-
-        #logger.info('%s %s' % (result, payload))

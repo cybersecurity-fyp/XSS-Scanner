@@ -9,6 +9,7 @@ if BASE_DIR not in sys.path:
 
 
 from core.colors import end, red, white, bad, info
+from core.ml_stats import MLStats
 
 # Just a fancy ass banner
 print('''%s
@@ -210,3 +211,6 @@ else:
             if i + 1 == len(forms) or (i + 1) % threadCount == 0:
                 logger.info('Progress: %i/%i\r' % (i + 1, len(forms)))
         logger.no_format('')
+
+# ===== ML INTEGRATION REPORT =====
+MLStats.report()
