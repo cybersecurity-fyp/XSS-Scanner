@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+starlette
+httpx
+itsdangerous
+supabase>=2.0.0
+python-dotenv
+slowapi
+reportlab
+pytest
+pytest-asyncio
+pytest-playwright
+playwright

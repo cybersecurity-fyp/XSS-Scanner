@@ -1,0 +1,15 @@
+/* ═══════════════════════════════════════════════════════
+   ML CARD
+═══════════════════════════════════════════════════════ */
+.ml-card {
+  background: linear-gradient(135deg, rgba(0,232,122,0.06) 0%, rgba(0,201,255,0.04) 100%);
+  border: 1px solid rgba(0,232,122,0.18);
+  border-radius: var(--radius-lg); padding: 18px 20px;
+  position: relative; overflow: hidden;
+}
+.ml-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.ml-card-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 3px; }
+.ml-card-desc  { font-size: 12px; font-family: var(--font-mono); color: var(--textDim); }

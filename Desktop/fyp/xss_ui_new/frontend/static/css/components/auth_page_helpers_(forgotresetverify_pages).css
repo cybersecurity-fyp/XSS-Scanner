@@ -1,0 +1,24 @@
+/* ═══════════════════════════════════════════════════════
+   AUTH PAGE HELPERS (forgot/reset/verify pages)
+═══════════════════════════════════════════════════════ */
+.auth-icon { font-size: 36px; text-align: center; margin-bottom: 10px; }
+.auth-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 4px; letter-spacing: 1px; }
+.auth-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--accent); opacity: 0.75; letter-spacing: 1.5px; text-align: center; margin-bottom: 20px; }
+/* Aliases matching auth-error / auth-success but for pages that use error-msg/success-msg */
+.error-msg {
+  background: var(--danger-dim); border: 1px solid rgba(255,68,102,0.25);
+  border-radius: 8px; padding: 9px 13px; color: var(--danger);
+  font-family: var(--font-mono); font-size: 12px; margin-bottom: 12px;
+}
+.success-msg {
+  background: var(--accent-dim); border: 1px solid rgba(0,232,122,0.25);
+  border-radius: 8px; padding: 9px 13px; color: var(--accent);
+  font-family: var(--font-mono); font-size: 12px; margin-bottom: 12px;
+}
+/* input-icon is the older name for input-eye */
+.input-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 15px; user-select: none; }
+/* auth-orb-3 */
+.auth-orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,68,102,0.05) 0%, transparent 70%); bottom: -60px; left: 40%; pointer-events: none; }
+/* Password hint rows used on reset page */
+.pw-hint-box { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--textSub); line-height: 2; }
+.pw-hint-row { display: flex; align-items: center; gap: 8px; }
