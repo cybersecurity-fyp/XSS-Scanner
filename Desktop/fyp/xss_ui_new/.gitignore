@@ -1,0 +1,19 @@
+# .env committed for private FYP repo so team can clone and run directly
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Database files
+*.db
+*.db-journal
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
