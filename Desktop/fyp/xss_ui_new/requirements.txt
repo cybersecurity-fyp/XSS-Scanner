@@ -13,3 +13,5 @@ pytest
 pytest-asyncio
 pytest-playwright
 playwright
+scikit-learn
+joblib

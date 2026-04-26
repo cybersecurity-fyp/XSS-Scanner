@@ -12,9 +12,10 @@ from typing import Optional
 
 
 def find_xsstrike() -> Optional[str]:
-    """Find xsstrike.py in the project root directory."""
+    """Find xsstrike.py — prefers Mariyam's ML-integrated xsstrike_code, falls back to XSStrike."""
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     candidates = [
+        os.path.join(project_root, 'xsstrike_code', 'xsstrike.py'),  # Mariyam's ML version
         os.path.join(project_root, 'XSStrike', 'xsstrike.py'),
         os.path.join(project_root, 'xsstrike', 'xsstrike.py'),
     ]
@@ -22,6 +23,10 @@ def find_xsstrike() -> Optional[str]:
         if os.path.exists(path):
             return path
     return None
+
+
+def _project_root() -> str:
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def build_command(config: dict) -> list[str]:
@@ -83,7 +88,12 @@ def build_command(config: dict) -> list[str]:
 
 
 def run_subprocess(cmd: list[str]) -> subprocess.Popen:
-    """Start XSStrike subprocess and return the Popen handle."""
+    """Start XSStrike subprocess and return the Popen handle.
+    PYTHONPATH includes project root so xsstrike_ml imports resolve correctly."""
+    env = os.environ.copy()
+    root = _project_root()
+    existing = env.get('PYTHONPATH', '')
+    env['PYTHONPATH'] = root + (os.pathsep + existing if existing else '')
     return subprocess.Popen(
         cmd,
         stdout=subprocess.PIPE,
@@ -91,6 +101,7 @@ def run_subprocess(cmd: list[str]) -> subprocess.Popen:
         text=True,
         bufsize=1,
         universal_newlines=True,
+        env=env,
     )
 
 
