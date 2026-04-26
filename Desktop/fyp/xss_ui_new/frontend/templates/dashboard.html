@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% set active = "dashboard" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- ── Overview statistics ── -->
+<section aria-label="Overview statistics">
+  <div class="stats-3col">
+
+    <article class="stat-card green" aria-label="Total scans: {{ stats.total }}">
+      <div class="stat-icon green" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </div>
+      <div class="flex-1">
+        <div class="stat-value">{{ stats.total }}</div>
+        <div class="stat-label">Total Scans</div>
+        <div class="stat-trend up">All sessions</div>
+      </div>
+      <div class="align-end" aria-hidden="true">
+        <div class="progress-bar" style="width:100%; max-width:80px;"><div class="progress-fill green" style="width:{{ [100, stats.total * 5]|min }}%;"></div></div>
+      </div>
+    </article>
+
+    <article class="stat-card red" aria-label="Vulnerabilities found: {{ stats.vulns }}">
+      <div class="stat-icon red" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="flex-1">
+        <div class="stat-value">{{ stats.vulns }}</div>
+        <div class="stat-label">XSS Findings</div>
+        <div class="stat-trend {% if stats.vulns == 0 %}up{% else %}down{% endif %}">
+          {% if stats.vulns == 0 %}All targets clean{% else %}Requires remediation{% endif %}
+        </div>
+      </div>
+      <div class="align-end" aria-hidden="true">
+        <div class="progress-bar" style="width:100%; max-width:80px;"><div class="progress-fill red" style="width:{% if stats.total > 0 %}{{ [100, (stats.vulns / stats.total * 100)|int]|min }}{% else %}0{% endif %}%;"></div></div>
+      </div>
+    </article>
+
+    <article class="stat-card blue" aria-label="System health: {{ stats.health }}%">
+      <div class="stat-icon blue" aria-hidden="true">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div class="flex-1">
+        <div class="stat-value">{{ stats.health }}<span class="stat-value-unit">%</span></div>
+        <div class="stat-label">Clean Scan Rate</div>
+        <div class="stat-trend {% if stats.health >= 80 %}up{% else %}down{% endif %}">
+          {% if stats.health >= 80 %}Healthy baseline{% else %}Review recent scans{% endif %}
+        </div>
+      </div>
+      <div class="align-end" aria-hidden="true">
+        <div class="progress-bar" style="width:100%; max-width:80px;"><div class="progress-fill blue" style="width:{{ stats.health }}%;"></div></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── Main dashboard grid ── -->
+<div class="dash-grid">
+
+  <!-- Left column: charts + recent scans -->
+  <div class="d-col gap-16">
+
+    <!-- Activity Chart -->
+    <section class="card" aria-labelledby="activity-chart-heading">
+      <div class="card-header">
+        <h2 class="card-title" id="activity-chart-heading">Scan Activity</h2>
+        <div class="d-flex gap-14 text-mono-dim" aria-hidden="true">
+          <span class="d-flex align-center gap-5"><span class="chart-dot accent"></span>Scans</span>
+          <span class="d-flex align-center gap-5"><span class="chart-dot danger"></span>Vulns</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="activityChart" role="img" aria-label="Line chart showing daily scan and vulnerability counts"></canvas>
+      </div>
+    </section>
+
+    <!-- Recent Scans -->
+    <section class="card" aria-labelledby="recent-scans-heading">
+      <div class="card-header">
+        <h2 class="card-title" id="recent-scans-heading">Recent Scans</h2>
+        <a href="/history" class="btn btn-ghost btn-sm" style="font-size:12px;">View all →</a>
+      </div>
+
+      {% if history %}
+      <ol class="sr-only" aria-label="Recent scan list summary">
+        {% for scan in history %}<li>{{ scan.url }} — {{ scan.status }}, {{ scan.vulnerabilities }} vulnerabilities</li>{% endfor %}
+      </ol>
+      <div aria-hidden="true">
+        {% for scan in history %}
+        <div class="activity-item">
+          <div class="flex-1">
+            <div class="activity-url">{{ scan.url[:65] }}{% if scan.url|length > 65 %}…{% endif %}</div>
+            <div class="activity-meta">{{ scan.date }} · {{ scan.duration }}</div>
+          </div>
+          <div class="activity-badges">
+            {% if scan.vulnerabilities > 0 %}
+            <span class="badge badge-red">⚠ {{ scan.vulnerabilities }}</span>
+            {% else %}
+            <span class="badge badge-green">✓ Clean</span>
+            {% endif %}
+            <span class="badge {% if scan.status=='Completed' %}badge-green{% else %}badge-red{% endif %}">{{ scan.status }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty-state">
+        <div class="empty-icon" aria-hidden="true"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <p class="empty-title">No scans yet</p>
+        <p class="empty-desc">Run your first scan to start detecting XSS vulnerabilities and building your security history.</p>
+        <a href="/scan" class="btn btn-primary">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
+          Start First Scan
+        </a>
+      </div>
+      {% endif %}
+    </section>
+
+  </div>
+
+  <!-- Right column: quick actions + charts + system info -->
+  <div class="d-col gap-14">
+
+    <!-- Quick Actions -->
+    <section class="card" aria-labelledby="quick-actions-heading">
+      <h2 class="card-label" id="quick-actions-heading">Quick Actions</h2>
+      <a href="/scan" class="btn btn-primary btn-lg w-100" style="margin-bottom:9px;font-weight:600;letter-spacing:0.5px;">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
+        New Scan
+      </a>
+      <a href="/history" class="btn btn-ghost btn-lg w-100" style="font-size:13px;margin-bottom:6px;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+        View History
+      </a>
+    </section>
+
+    <!-- Vulnerability Donut -->
+    <section class="card" aria-labelledby="vuln-ratio-heading">
+      <h2 class="card-label" id="vuln-ratio-heading">Vulnerability Ratio</h2>
+      <div class="donut-wrap">
+        <canvas id="vulnChart"
+                data-vulns="{{ stats.vulns }}" data-total="{{ stats.total }}"
+                role="img"
+                aria-label="Doughnut chart: {{ stats.vulns }} vulnerable, {{ [0, stats.total - stats.vulns]|max }} clean out of {{ stats.total }} total scans"></canvas>
+      </div>
+      <div class="vuln-ratio-grid" aria-hidden="true">
+        <div class="vuln-ratio-cell">
+          <div class="vuln-ratio-num danger">{{ stats.vulns }}</div>
+          <div class="vuln-ratio-label">VULNERABLE</div>
+        </div>
+        <div class="vuln-ratio-cell">
+          <div class="vuln-ratio-num accent">{{ [0, stats.total - stats.vulns]|max }}</div>
+          <div class="vuln-ratio-label">CLEAN</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- System Info -->
+    <section class="card" aria-labelledby="system-info-heading">
+      <h2 class="card-label" id="system-info-heading">System Status</h2>
+      <dl class="info-block">
+        <div class="info-row"><dt class="info-key">Scanner</dt><dd class="info-val">XSStrike 3.x</dd></div>
+        <div class="info-row"><dt class="info-key">ML Model</dt><dd class="info-val info-val-accent">v2.0 · Active</dd></div>
+        <div class="info-row"><dt class="info-key">API</dt><dd class="info-val">FastAPI</dd></div>
+        <div class="info-row"><dt class="info-key">Database</dt><dd class="info-val info-val-blue">Supabase · Connected</dd></div>
+        <div class="info-row info-row-last"><dt class="info-key">Signed in as</dt><dd class="info-val info-val-accent">{{ user.username }}</dd></div>
+      </dl>
+    </section>
+
+  </div>
+</div>
+<!-- chart-daily-data in content block so HTMX navigation refreshes it -->
+<script type="application/json" id="chart-daily-data">{{ daily | tojson }}</script>
+{% endblock %}
+
+{% block scripts %}{% endblock %}

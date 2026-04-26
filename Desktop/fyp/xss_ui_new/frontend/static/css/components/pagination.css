@@ -1,0 +1,5 @@
+/* ═══════════════════════════════════════════════════════
+   PAGINATION
+═══════════════════════════════════════════════════════ */
+.pagination { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 20px; flex-wrap: wrap; }
+.page-dots  { color: var(--textDim); padding: 0 3px; font-size: 13px; }

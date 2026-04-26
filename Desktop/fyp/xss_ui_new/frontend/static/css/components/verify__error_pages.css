@@ -1,0 +1,7 @@
+/* ═══════════════════════════════════════════════════════
+   VERIFY / ERROR PAGES
+═══════════════════════════════════════════════════════ */
+.verify-card { max-width: 420px; margin: 60px auto; background: var(--bg2); border: 1px solid var(--borderMed); border-radius: var(--radius-xl); padding: 40px; text-align: center; }
+.verify-icon  { font-size: 48px; margin-bottom: 14px; }
+.verify-title { font-family: var(--font-display); font-size: 21px; font-weight: 700; margin-bottom: 9px; }
+.verify-msg   { font-size: 13px; color: var(--textSub); line-height: 1.7; margin-bottom: 22px; }

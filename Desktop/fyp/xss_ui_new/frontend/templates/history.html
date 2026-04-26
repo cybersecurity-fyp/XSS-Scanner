@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% set active = "history" %}
+{% block title %}Scan History{% endblock %}
+{% block page_title %}Scan History{% endblock %}
+
+{% block content %}
+<section class="card" aria-labelledby="history-heading">
+  <div class="card-topbar">
+    <div>
+      <h2 class="card-title" id="history-heading">All Scans</h2>
+      <div class="card-subtitle mono-dim">
+        {% if history %}{{ total }} record{% if total != 1 %}s{% endif %}{% else %}No records{% endif %}
+      </div>
+    </div>
+    <div class="filter-bar">
+      <select id="status-filter" class="filter-select" aria-label="Filter by status">
+        <option value="">All Status</option>
+        <option value="Completed">Completed</option>
+        <option value="Failed">Failed</option>
+      </select>
+      <select id="vuln-filter" class="filter-select" aria-label="Filter by result">
+        <option value="">All Results</option>
+        <option value="vuln">Vulnerable</option>
+        <option value="clean">Clean</option>
+      </select>
+      <div class="search-wrap">
+        <svg class="search-icon" width="13" height="13" fill="none" stroke="var(--textDim)" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="search-input" class="search-input" type="text" placeholder="Search URL…" aria-label="Search scans">
+      </div>
+    </div>
+  </div>
+
+  {% if history %}
+  <div id="bulk-bar" role="status" aria-live="polite">
+    <span id="bulk-count">0 selected</span>
+    <button id="bulk-delete-btn" class="btn btn-danger btn-sm">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+      Delete Selected
+    </button>
+    <button id="bulk-cancel-btn" class="btn btn-ghost btn-sm">Cancel</button>
+  </div>
+
+  <div class="table-scroll">
+    <table class="data-table" id="history-table" aria-label="Scan history">
+      <caption class="sr-only">Scan history — {{ total }} record{% if total != 1 %}s{% endif %}. Use filters above to narrow results.</caption>
+      <thead>
+        <tr>
+          <th scope="col" style="width:30px;"><input type="checkbox" class="row-check" id="check-all" aria-label="Select all scans"></th>
+          <th scope="col" style="width:48px;">#</th>
+          <th scope="col" class="col-hide-mob">Date &amp; Time</th>
+          <th scope="col">Target URL</th>
+          <th scope="col">Status</th>
+          <th scope="col">Findings</th>
+          <th scope="col" class="col-hide-mob">Duration</th>
+          <th scope="col" style="width:180px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for scan in history %}
+        <tr data-url="{{ scan.url }}" data-status="{{ scan.status }}" data-vulns="{{ scan.vulnerabilities }}" data-id="{{ scan.id }}">
+          <td><input type="checkbox" class="row-check scan-check" data-id="{{ scan.id }}" aria-label="Select scan {{ scan.id }}"></td>
+          <td class="cell-id">{{ scan.id }}</td>
+          <td class="col-hide-mob cell-date">{{ scan.date }}</td>
+          <td class="url-cell"><span title="{{ scan.url }}">{{ scan.url }}</span></td>
+          <td><span class="badge {% if scan.status=='Completed' %}badge-green{% else %}badge-red{% endif %}">{{ scan.status }}</span></td>
+          <td>
+            {% if scan.vulnerabilities > 0 %}
+            <span class="badge badge-red">{{ scan.vulnerabilities }}</span>
+            {% else %}
+            <span class="cell-id">—</span>
+            {% endif %}
+          </td>
+          <td class="col-hide-mob cell-date">{{ scan.duration }}</td>
+          <td>
+            <div class="action-group">
+              <button class="btn btn-ghost btn-sm" data-action="view" data-id="{{ scan.id }}" title="View report">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                View
+              </button>
+              <a href="/api/v1/csv/{{ scan.id }}" class="btn btn-ghost btn-sm btn-xs" title="Export CSV">CSV</a>
+              <a href="/api/v1/json/{{ scan.id }}" class="btn btn-ghost btn-sm btn-xs btn-accent2" title="Export JSON">JSON</a>
+              <button class="btn btn-ghost btn-sm btn-danger-text" data-action="delete" data-id="{{ scan.id }}" title="Delete" aria-label="Delete scan {{ scan.id }}">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+        <tr id="no-results-row" style="display:none;">
+          <td colspan="7" class="table-empty-row">No scans match your current filters. Try adjusting your search or clearing the filters.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon" aria-hidden="true"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+    <p class="empty-title">No scan history yet</p>
+    <p class="empty-desc">Your completed scans will appear here with full logs, vulnerability counts, and export options.</p>
+    <a href="/scan" class="btn btn-primary">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3l14 9-14 9V3z"/></svg>
+      Start Your First Scan
+    </a>
+  </div>
+  {% endif %}
+
+  {% if total_pages > 1 %}
+
+  <div class="pagination" role="navigation" aria-label="Scan history pages">
+    {% if page > 1 %}
+    <a href="/history?page={{ page-1 }}" class="btn btn-ghost btn-sm">← Prev</a>
+    {% else %}
+    <button class="btn btn-ghost btn-sm page-btn--disabled" disabled>← Prev</button>
+    {% endif %}
+
+    {% for p in range(1, total_pages+1) %}
+      {% if p == page %}
+      <span class="btn btn-primary btn-sm page-btn" aria-current="page">{{ p }}</span>
+      {% elif p==1 or p==total_pages or (p>=page-2 and p<=page+2) %}
+      <a href="/history?page={{ p }}" class="btn btn-ghost btn-sm page-btn">{{ p }}</a>
+      {% elif p==page-3 or p==page+3 %}
+      <span class="page-dots">…</span>
+      {% endif %}
+    {% endfor %}
+
+    {% if page < total_pages %}
+    <a href="/history?page={{ page+1 }}" class="btn btn-ghost btn-sm">Next →</a>
+    {% else %}
+    <button class="btn btn-ghost btn-sm page-btn--disabled" disabled>Next →</button>
+    {% endif %}
+  </div>
+  {% endif %}
+</section>
+
+<!-- Report Modal -->
+<div class="modal-overlay" id="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title" id="report-modal-title">Scan Report</h2>
+      <button class="modal-close" aria-label="Close report">✕</button>
+    </div>
+
+    <dl class="modal-meta-grid">
+      <div class="modal-meta-item" style="grid-column:span 2;">
+        <dt class="modal-meta-label">Target URL</dt>
+        <dd id="modal-url" class="modal-meta-value" style="color:var(--accent-2);margin:0;"></dd>
+      </div>
+      <div class="modal-meta-item">
+        <dt class="modal-meta-label">Date</dt>
+        <dd id="modal-date" class="modal-meta-value" style="margin:0;"></dd>
+      </div>
+      <div class="modal-meta-item">
+        <dt class="modal-meta-label">Status</dt>
+        <dd id="modal-status" style="margin:0;"></dd>
+      </div>
+      <div class="modal-meta-item">
+        <dt class="modal-meta-label">Vulnerabilities</dt>
+        <dd id="modal-vulns" class="modal-meta-value" style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--danger);margin:0;"></dd>
+      </div>
+      <div class="modal-meta-item">
+        <dt class="modal-meta-label">Duration</dt>
+        <dd id="modal-duration" class="modal-meta-value" style="margin:0;"></dd>
+      </div>
+    </dl>
+
+    <div class="terminal" style="margin-bottom:14px;">
+      <div class="terminal-titlebar">
+        <div class="t-dot" style="background:#ff5f57;"></div>
+        <div class="t-dot" style="background:#febc2e;"></div>
+        <div class="t-dot" style="background:#28c840;"></div>
+        <div class="terminal-name">scan_log_output</div>
+      </div>
+      <div class="terminal-body terminal-body--report" id="modal-log"></div>
+    </div>
+
+    <div class="modal-footer">
+      <button id="copy-log-btn" class="btn btn-ghost btn-sm">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Log
+      </button>
+      <button id="export-csv-btn" class="btn btn-ghost btn-sm">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CSV
+      </button>
+      <button id="export-pdf-btn" class="btn btn-ghost btn-sm" style="color:var(--danger);">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Export PDF
+      </button>
+      <button class="btn btn-primary btn-sm" data-action="close-modal">Done</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}{% endblock %}
