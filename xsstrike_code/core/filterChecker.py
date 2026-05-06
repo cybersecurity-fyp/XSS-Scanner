@@ -24,9 +24,10 @@ def filterChecker(url, params, headers, GET, delay, occurences, timeout, encodin
             if occurences[i]['details']['quote']:
                 environments.add(occurences[i]['details']['quote'])
     for environment in environments:
-        if environment:
+        if environment: 
             efficiencies = checker(
-                url, params, headers, GET, delay, environment, positions, timeout, encoding)
+                url, params, headers, GET, delay, environment, positions, timeout, encoding, context=context
+)
             efficiencies.extend([0] * (len(occurences) - len(efficiencies)))
             for occurence, efficiency in zip(occurences, efficiencies):
                 occurences[occurence]['score'][environment] = efficiency
