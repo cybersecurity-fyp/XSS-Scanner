@@ -17,18 +17,22 @@ else:
 try:
     model = joblib.load(MODEL_PATH)
     vectorizer = joblib.load(TFIDF_PATH)
-    print(f"[ML] Loaded {MODEL_TYPE.upper()} model + TF-IDF")
+    print(f"[ML] Loaded {MODEL_TYPE.upper()} model for prefiltering")
 except Exception as e:
     print(f"[ML] ERROR loading models: {e}")
     model = None
     vectorizer = None
 
 
-def is_malicious(payload, threshold=0.5):
+def is_malicious(payload, threshold=0.95):
     if model is None or vectorizer is None:
         return True  # fail-open (do not break scanner)
 
     X = vectorizer.transform([payload])
     prob = model.predict_proba(X)[0][1]
+
+    # DEBUG PRINT 
+    #print(f"[PREFILTER] prob={prob:.2f} payload={payload[:60]}")
+    print(payload, "=>", prob)
 
     return prob >= threshold
