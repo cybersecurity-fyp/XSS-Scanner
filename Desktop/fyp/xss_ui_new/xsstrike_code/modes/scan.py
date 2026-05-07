@@ -15,20 +15,26 @@ from core.utils import getUrl, getParams, getVar
 from core.wafDetector import wafDetector
 from core.log import setup_logger
 
+# ML prefilter
+from xsstrike_ml.ml_prefilter import is_malicious
+
+# ML stats
+from core.ml_stats import MLStats
+
 logger = setup_logger(__name__)
 
 
 def scan(target, paramData, encoding, headers, delay, timeout, skipDOM, skip):
     GET, POST = (False, True) if paramData else (True, False)
-    # If the user hasn't supplied the root url with http(s), we will handle it
+
     if not target.startswith('http'):
         try:
-            response = requester('https://' + target, {},
-                                 headers, GET, delay, timeout)
+            requester('https://' + target, {}, headers, GET, delay, timeout)
             target = 'https://' + target
         except:
             target = 'http://' + target
-    logger.debug('Scan target: {}'.format(target))
+
+    logger.debug(f'Scan target: {target}')
     response = requester(target, {}, headers, GET, delay, timeout).text
 
     if not skipDOM:
@@ -40,81 +46,109 @@ def scan(target, paramData, encoding, headers, delay, timeout, skipDOM, skip):
             for line in highlighted:
                 logger.no_format(line, level='good')
             logger.red_line(level='good')
-    host = urlparse(target).netloc  # Extracts host out of the url
-    logger.debug('Host to scan: {}'.format(host))
+
     url = getUrl(target, GET)
-    logger.debug('Url to scan: {}'.format(url))
     params = getParams(target, paramData, GET)
-    logger.debug_json('Scan parameters:', params)
+
     if not params:
         logger.error('No parameters to test.')
-        quit()
-    WAF = wafDetector(
-        url, {list(params.keys())[0]: xsschecker}, headers, GET, delay, timeout)
+        return
+
+    WAF = wafDetector(url, {list(params.keys())[0]: xsschecker}, headers, GET, delay, timeout)
+
     if WAF:
-        logger.error('WAF detected: %s%s%s' % (green, WAF, end))
+        logger.error(f'WAF detected: {green}{WAF}{end}')
     else:
-        logger.good('WAF Status: %sOffline%s' % (green, end))
+        logger.good(f'WAF Status: {green}Offline{end}')
 
     for paramName in params.keys():
         paramsCopy = copy.deepcopy(params)
-        logger.info('Testing parameter: %s' % paramName)
-        if encoding:
-            paramsCopy[paramName] = encoding(xsschecker)
-        else:
-            paramsCopy[paramName] = xsschecker
+        logger.info(f'Testing parameter: {paramName}')
+
+        paramsCopy[paramName] = encoding(xsschecker) if encoding else xsschecker
+
         response = requester(url, paramsCopy, headers, GET, delay, timeout)
         occurences = htmlParser(response, encoding)
         positions = occurences.keys()
-        logger.debug('Scan occurences: {}'.format(occurences))
+
         if not occurences:
             logger.error('No reflection found')
             continue
-        else:
-            logger.info('Reflections found: %i' % len(occurences))
+
+        logger.info(f'Reflections found: {len(occurences)}')
 
         logger.run('Analysing reflections')
-        efficiencies = filterChecker(
-            url, paramsCopy, headers, GET, delay, occurences, timeout, encoding)
-        logger.debug('Scan efficiencies: {}'.format(efficiencies))
+        filterChecker(url, paramsCopy, headers, GET, delay, occurences, timeout, encoding)
+
         logger.run('Generating payloads')
         vectors = generator(occurences, response.text)
-        total = 0
-        for v in vectors.values():
-            total += len(v)
+
+        total = sum(len(v) for v in vectors.values())
+
         if total == 0:
             logger.error('No vectors were crafted.')
             continue
-        logger.info('Payloads generated: %i' % total)
+
+        logger.info(f'Payloads generated: {total}')
+
+        MLStats.total_payloads += total
+
         progress = 0
-        for confidence, vects in vectors.items():
-            for vect in vects:
-                if core.config.globalVariables['path']:
-                    vect = vect.replace('/', '%2F')
-                loggerVector = vect
-                progress += 1
-                logger.run('Progress: %i/%i\r' % (progress, total))
-                if not GET:
-                    vect = unquote(vect)
-                efficiencies = checker(
-                    url, paramsCopy, headers, GET, delay, vect, positions, timeout, encoding)
-                if not efficiencies:
-                    for i in range(len(occurences)):
-                        efficiencies.append(0)
-                bestEfficiency = max(efficiencies)
-                if bestEfficiency == 100 or (vect[0] == '\\' and bestEfficiency >= 95):
-                    logger.red_line()
-                    logger.good('Payload: %s' % loggerVector)
-                    logger.info('Efficiency: %i' % bestEfficiency)
-                    logger.info('Confidence: %i' % confidence)
+
+        with open("xsstrike_payloads_for_postfilter.txt", "a", encoding="utf-8") as f:
+            for confidence, vects in vectors.items():
+                for vect in vects:
+
+                    f.write(vect + "\n")
+
+                    if core.config.globalVariables['path']:
+                        vect = vect.replace('/', '%2F')
+
+                    loggerVector = vect
+                    progress += 1
+                    logger.run(f'Progress: {progress}/{total}\r')
+
+                    if not GET:
+                        vect = unquote(vect)
+
+                    # ===============================
+                    # PREFILTER (ML)
+                    # ===============================
+
+                    if not is_malicious(vect):
+                        MLStats.ml_filtered += 1
+                        continue
+
+                    MLStats.sent_to_target += 1
+
+                    # ===============================
+                    # SEND TO TARGET
+                    # ===============================
+                    efficiencies = checker(
+                        url,
+                        paramsCopy,
+                        headers,
+                        GET,
+                        delay,
+                        vect,
+                        positions,
+                        timeout,
+                        encoding,
+                        context=occurences[list(occurences.keys())[0]]['context'],
+                        is_payload=True
+                    )
+
+                    if not efficiencies:
+                        efficiencies = [0] * len(occurences)
+
+                    bestEfficiency = max(efficiencies)
+
                     if not skip:
-                        choice = input(
-                            '%s Would you like to continue scanning? [y/N] ' % que).lower()
+                        choice = input(f'{que} Would you like to continue scanning? [y/N] ').lower()
                         if choice != 'y':
-                            quit()
-                elif bestEfficiency > minEfficiency:
-                    logger.red_line()
-                    logger.good('Payload: %s' % loggerVector)
-                    logger.info('Efficiency: %i' % bestEfficiency)
-                    logger.info('Confidence: %i' % confidence)
+                            MLStats.report()
+                            return
+
         logger.no_format('')
+
+    MLStats.report()

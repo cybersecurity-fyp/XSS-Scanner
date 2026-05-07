@@ -1,4 +1,3 @@
-import os
 import joblib
 import pandas as pd
 import sys
@@ -19,9 +18,8 @@ def preprocess_text(text):
 # ----------------------------
 # Load vectorizer + model
 # ----------------------------
-_BASE      = os.path.dirname(os.path.abspath(__file__))
-vectorizer = joblib.load(os.path.join(_BASE, "models", "tfidf_rf.pkl"))
-model      = joblib.load(os.path.join(_BASE, "models", "rf_model.pkl"))
+vectorizer = joblib.load(r"D:\XSStrike-master\xsstrike-ml\models\tfidf_vectorizer.pkl")
+model = joblib.load(r"D:\XSStrike-master\xsstrike-ml\models\random_forest_model.pkl")
 # You can also load logistic regression if needed
 
 # ----------------------------

