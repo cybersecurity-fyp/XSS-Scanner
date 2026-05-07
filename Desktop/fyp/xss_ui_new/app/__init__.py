@@ -82,9 +82,17 @@ def _register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(404)
     async def not_found(request: Request, exc):
         user = request.session.get('user') if hasattr(request, 'session') else None
-        return tmpl.TemplateResponse('404.html', {'request': request, 'user': user}, status_code=404)
+        return tmpl.TemplateResponse(
+            name="404.html",
+            request=request,
+            context={"user": user},
+            status_code=404)
 
     @app.exception_handler(500)
     async def server_error(request: Request, exc):
         user = request.session.get('user') if hasattr(request, 'session') else None
-        return tmpl.TemplateResponse('500.html', {'request': request, 'user': user}, status_code=500)
+        return tmpl.TemplateResponse(
+            name="500.html",
+            request=request,
+            context={"user": user},
+            status_code=500)
