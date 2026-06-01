@@ -28,9 +28,6 @@ async def login(form: LoginForm, request: Request):
         raise HTTPException(401, 'Invalid credentials')
     if result.get('__locked__'):
         raise HTTPException(429, f"Account locked. Try again in {result['minutes']} minute(s).")
-    if result.get('__unverified__'):
-        raise HTTPException(403, 'Please verify your email before logging in.')
-
     request.session.clear()
     request.session['user'] = result
     log.info('Login: %s', result.get('username'))
@@ -70,7 +67,7 @@ async def register(form: RegisterForm, request: Request):
             log.warning('Verification email failed for %s: %s', form.email, err)
 
     log.info('Registered: %s (%s)', form.username, form.email)
-    return {'success': True, 'message': 'Account created! Check your email to verify before logging in.'}
+    return {'success': True, 'message': 'Account created! You can now log in.'}
 
 
 @router.post('/logout')

@@ -25,6 +25,6 @@ async def add_security_headers(request: Request, call_next):
     )
 
     if request.url.path.startswith('/static/'):
-        response.headers['Cache-Control'] = 'public, max-age=86400'
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
 
     return response

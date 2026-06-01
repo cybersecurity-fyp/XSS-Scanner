@@ -75,7 +75,7 @@
         <label class="form-label" for="reg-pass">Password</label>
         <div class="input-wrap">
           <input id="reg-pass" class="form-input" type="password"
-                 placeholder="Min 8 chars with upper, lower, number, symbol"
+                 placeholder="Min 6 chars, one number, one special char"
                  required style="padding-right:38px;" autocomplete="new-password"
                  oninput="updateStrength(this.value)">
           <span class="input-eye" onclick="togglePassword('reg-pass')" role="button" aria-label="Toggle password visibility" tabindex="0"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
@@ -87,9 +87,7 @@
           </div>
           <div id="pw-label" class="pw-label"></div>
           <div class="pw-rules">
-            <div id="rule-len"     class="pw-rule"><div class="pw-rule-dot"></div>At least 8 characters</div>
-            <div id="rule-upper"   class="pw-rule"><div class="pw-rule-dot"></div>One uppercase (A–Z)</div>
-            <div id="rule-lower"   class="pw-rule"><div class="pw-rule-dot"></div>One lowercase (a–z)</div>
+            <div id="rule-len"     class="pw-rule"><div class="pw-rule-dot"></div>At least 6 characters</div>
             <div id="rule-num"     class="pw-rule"><div class="pw-rule-dot"></div>One number (0–9)</div>
             <div id="rule-special" class="pw-rule"><div class="pw-rule-dot"></div>One special char (!@#$…)</div>
           </div>
