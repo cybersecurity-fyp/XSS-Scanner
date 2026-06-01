@@ -51,7 +51,12 @@ def insert_user(username: str, email: str, password_hash: str,
             'email_verified': email_verified,
         }).execute()
         rows = resp.data or []
-        return rows[0]['id'] if rows else None
+        if rows:
+            return rows[0]['id']
+        # Supabase didn't return data — query for the new row
+        row = db.table('users').select('id').eq('email', email).limit(1).execute()
+        data = row.data or []
+        return data[0]['id'] if data else None
     except Exception:
         return None
 
@@ -157,10 +162,13 @@ def save_preferences(user_id: int, prefs: dict) -> bool:
 # ── Token tables ──────────────────────────────────────────────────────────────
 
 def upsert_verification_token(user_id: int, token: str, expires_at: str) -> None:
-    db.table('email_verifications').delete().eq('user_id', user_id).execute()
-    db.table('email_verifications').insert({
-        'user_id': user_id, 'token': token, 'expires_at': expires_at,
-    }).execute()
+    try:
+        db.table('email_verifications').delete().eq('user_id', user_id).execute()
+        db.table('email_verifications').insert({
+            'user_id': user_id, 'token': token, 'expires_at': expires_at,
+        }).execute()
+    except Exception:
+        pass
 
 
 def get_verification_token(token: str) -> Optional[dict]:

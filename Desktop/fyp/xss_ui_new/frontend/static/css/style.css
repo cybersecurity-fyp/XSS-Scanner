@@ -2696,3 +2696,85 @@ body, input, button, select, textarea {
   .stat-card::after, .card::after, .btn-primary::before { display: none; }
 }
 
+
+/* ═══════════════════════════════════════════════════════
+   LIGHT MODE VISUAL FIXES
+═══════════════════════════════════════════════════════ */
+
+/* Logo name: white gradient text is invisible on white sidebar — restore readable color */
+[data-theme="light"] .logo-name {
+  background: none;
+  -webkit-text-fill-color: var(--text);
+  color: var(--text);
+}
+
+/* Stat cards: hardcoded dark rgba background doesn't adapt to light mode */
+[data-theme="light"] .stat-card {
+  background: var(--bg2);
+}
+
+/* Ghost buttons: rgba(255,255,255,0.02) is nearly invisible on light backgrounds */
+[data-theme="light"] .btn-ghost {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.10);
+  color: var(--textSub);
+}
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(0,0,0,0.07);
+  border-color: rgba(0,0,0,0.15);
+  color: var(--text);
+}
+[data-theme="light"] .btn-ghost:active {
+  background: rgba(0,0,0,0.10);
+}
+
+/* Accent-bg card variant: dark green stop is invisible on light theme */
+[data-theme="light"] .card--accent-bg {
+  background: linear-gradient(135deg, var(--bg2), rgba(0,168,85,0.06));
+}
+
+/* Topbar gradient line: slightly visible on light backgrounds */
+[data-theme="light"] .topbar::after {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,168,85,0.2) 30%, rgba(0,112,201,0.15) 70%, transparent 100%);
+}
+
+/* Sidebar footer user-pill: use bg4 for better contrast on white sidebar */
+[data-theme="light"] .user-pill {
+  background: var(--bg4);
+  border-color: var(--borderMed);
+}
+
+/* Collapsed sidebar: show only logout button, hide avatar */
+.sb-collapsed .user-avatar {
+  display: none;
+}
+.sb-collapsed .user-pill {
+  justify-content: center;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+.sb-collapsed .logout-btn {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--textDim);
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.sb-collapsed .logout-btn:hover {
+  background: var(--danger-dim);
+  border-color: rgba(255,68,102,0.3);
+  color: var(--danger);
+}
+
+/* Collapsed sidebar: no scroll on nav */
+.sb-collapsed .sidebar-nav {
+  overflow: hidden;
+}
+

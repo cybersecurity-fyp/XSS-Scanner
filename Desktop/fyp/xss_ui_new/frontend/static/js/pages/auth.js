@@ -52,9 +52,7 @@ function updateStrength(val) {
   wrap.style.display = val.length > 0 ? 'block' : 'none';
 
   const rules = {
-    len:     val.length >= 8,
-    upper:   /[A-Z]/.test(val),
-    lower:   /[a-z]/.test(val),
+    len:     val.length >= 6,
     num:     /[0-9]/.test(val),
     special: /[^A-Za-z0-9]/.test(val),
   };
@@ -69,9 +67,8 @@ function updateStrength(val) {
   const label  = document.getElementById('pw-label');
   const levels = [
     { cls:'s-weak',   text:'Weak — too easy to guess',   color:'#f43f5e' },
-    { cls:'s-weak',   text:'Weak — add more variety',    color:'#f43f5e' },
-    { cls:'s-fair',   text:'Fair — getting better',      color:'#f59e0b' },
-    { cls:'s-good',   text:'Good — almost there',        color:'#22d3ee' },
+    { cls:'s-fair',   text:'Fair — add a number',        color:'#f59e0b' },
+    { cls:'s-good',   text:'Good — add a special char',  color:'#22d3ee' },
     { cls:'s-strong', text:'Strong — great password! ✓', color:'#00ff88' },
   ];
   const lvl = levels[score] || levels[0];
@@ -85,7 +82,7 @@ function updateStrength(val) {
   const inp = document.getElementById('reg-pass');
   if (inp) {
     inp.classList.remove('input-error', 'input-ok');
-    if (score >= 4)       inp.classList.add('input-ok');
+    if (score === 3)      inp.classList.add('input-ok');
     else if (val.length)  inp.classList.add('input-error');
   }
 }
@@ -135,9 +132,7 @@ async function doRegister(event) {
   if (!username || username.length < 3)        return showAuthErr(errEl, 'Username must be at least 3 characters');
   if (!/^[a-zA-Z0-9_]+$/.test(username))       return showAuthErr(errEl, 'Username: only letters, numbers and underscores');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showAuthErr(errEl, 'Please enter a valid email address');
-  if (password.length < 8)                     return showAuthErr(errEl, 'Password must be at least 8 characters');
-  if (!/[A-Z]/.test(password))                 return showAuthErr(errEl, 'Password needs at least one uppercase letter (A–Z)');
-  if (!/[a-z]/.test(password))                 return showAuthErr(errEl, 'Password needs at least one lowercase letter (a–z)');
+  if (password.length < 6)                     return showAuthErr(errEl, 'Password must be at least 6 characters');
   if (!/[0-9]/.test(password))                 return showAuthErr(errEl, 'Password needs at least one number (0–9)');
   if (!/[^A-Za-z0-9]/.test(password))          return showAuthErr(errEl, 'Password needs at least one special character (!@#$…)');
   if (password !== confirm)                    return showAuthErr(errEl, 'Passwords do not match');
