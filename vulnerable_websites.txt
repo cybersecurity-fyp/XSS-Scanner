@@ -1,0 +1,26 @@
+python xsstrike.py -u http://testphp.vulnweb.com/artists.php?artist=1
+
+python xsstrike.py -u http://testphp.vulnweb.com/showimage.php?file=1.jpg
+
+python xsstrike.py -u http://localhost:3000/#/search?q=test
+
+
+python xsstrike.py -u "https://portswigger-labs.net/xss-reflected/simple?search=test" --fuzzer
+
+python xsstrike.py -u "https://xss-game.appspot.com/level2/frame?query=test" --fuzzer
+
+python xsstrike.py -u "https://juice-shop.herokuapp.com/#/search?q=test" --fuzzer
+
+python xsstrike.py -u "https://public-firing-range.appspot.com/reflected/parameter/body?q=test"
+
+python xsstrike.py -u "https://public-firing-range.appspot.com/reflected/parameter/body/attribute?q=test"
+
+python xsstrike.py -u "https://hack-yourself-first.com/XSS/1?user=test"
+
+python xsstrike.py -u "http://testfire.net/search.jsp?query=test" --skip
+
+python xsstrike.py -u "http://demo.testfire.net/search.jsp?query=test" --skip
+
+python xsstrike.py -u "https://xss-game.appspot.com/level1/frame?query=test" --skip
+
+http://testfire.net/index.jsp?content=personal_deposit.htm
