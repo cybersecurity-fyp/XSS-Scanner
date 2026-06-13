@@ -1,3 +1,4 @@
+import csv
 import copy
 import re
 from urllib.parse import unquote
@@ -120,6 +121,10 @@ def checker(url, params, headers, GET, delay, payload, positions, timeout, encod
                 print("Payload:", payload)
                 print(f"XSStrike Efficiency: {xs_eff}")
                 print(f"Postfilter ML Confidence: {confidence:.2f}")
+
+                with open("confirmed_xss_payloads.csv", "a", newline="", encoding="utf-8") as f:
+                    writer = csv.writer(f)
+                    writer.writerow([payload, confidence])
 
             else:
                 print("------------------------------------------------------------")
