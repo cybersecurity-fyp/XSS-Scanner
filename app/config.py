@@ -24,7 +24,7 @@ def _fail(key: str) -> None:
     print(f'\n{border}')
     print('  XSSniper - Setup Required')
     print(f'  Missing or placeholder: {key}')
-    print(f'  Edit xss_ui_new/.env and restart.')
+    print(f'  Edit .env and restart.')
     print(f'{border}\n')
     sys.exit(1)
 
