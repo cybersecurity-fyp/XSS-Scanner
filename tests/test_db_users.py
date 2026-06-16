@@ -120,6 +120,8 @@ class TestInsertUser:
 
     def test_returns_none_when_data_empty(self, users, db):
         db.table.return_value.insert.return_value.execute.return_value = _mk_resp(data=[])
+        db.table.return_value.select.return_value.eq.return_value \
+          .limit.return_value.execute.return_value = _mk_resp(data=[])
         result = users.insert_user('emptyuser', 'empty@e.com', 'hash')
         assert result is None
 

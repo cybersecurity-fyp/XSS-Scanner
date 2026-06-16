@@ -45,10 +45,14 @@ def is_valid_email(email: str) -> bool:
 
 
 def password_meets_requirements(password: str) -> tuple[bool, str]:
-    if len(password) < 6:
-        return False, 'Password must be at least 6 characters'
+    if len(password) < 8:
+        return False, 'Password must be at least 8 characters'
     if len(password) > 128:
         return False, 'Password must be 128 characters or fewer'
+    if not re.search(r'[A-Z]', password):
+        return False, 'Password needs at least one uppercase letter'
+    if not re.search(r'[a-z]', password):
+        return False, 'Password needs at least one lowercase letter'
     if not re.search(r'[0-9]', password):
         return False, 'Password needs at least one number (0-9)'
     if not re.search(r'[^A-Za-z0-9]', password):
@@ -78,6 +82,9 @@ def authenticate(login: str, password: str) -> Optional[dict]:
     if not verify_password(password, row['password']):
         _record_failed_attempt(row)
         return None
+
+    if not row.get('email_verified', True):
+        return {'__unverified__': True}
 
     # Success — reset failure counter
     user_db.update_user(row['id'], {'failed_login_attempts': 0, 'locked_until': None})

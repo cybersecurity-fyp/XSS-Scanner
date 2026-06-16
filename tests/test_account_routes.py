@@ -91,7 +91,8 @@ class TestUpdateProfile:
     def test_update_email_success(self, client, auth_cookies):
         with patch('app.services.auth_service.verify_current_password', return_value=True), \
              patch('app.services.auth_service.update_email', return_value=(True, '')), \
-             patch('app.config.settings.smtp_configured', new=False):
+             patch('app.routers.account.settings') as mock_settings:
+            mock_settings.smtp_configured = False
             r = client.post(self.URL,
                             json={'field': 'email', 'value': 'new@example.com', 'password': 'OldPass@1'},
                             cookies=auth_cookies)
@@ -163,7 +164,7 @@ class TestPreferences:
         assert r.status_code == 401
 
     def test_get_preferences_returns_dict(self, client, auth_cookies):
-        with patch('app.db.users.get_preferences', return_value={'theme': 'dark'}):
+        with patch('app.routers.account.get_preferences', return_value={'theme': 'dark'}):
             r = client.get('/api/v1/account/preferences', cookies=auth_cookies)
         assert r.status_code == 200
         assert r.json()['theme'] == 'dark'

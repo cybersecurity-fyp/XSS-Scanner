@@ -57,10 +57,15 @@ def patch_db():
         yield _fake_db
 
 
+@pytest.fixture(autouse=True)
+def _reset_db_mock(patch_db):
+    """Reset the DB mock (including side_effects) before every test automatically."""
+    patch_db.reset_mock(return_value=True, side_effect=True)
+
+
 @pytest.fixture
 def db(patch_db):
-    """Per-test access to the mock DB; reset call history between tests."""
-    patch_db.reset_mock()
+    """Per-test access to the mock DB (already reset by _reset_db_mock)."""
     return patch_db
 
 

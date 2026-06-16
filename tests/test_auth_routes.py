@@ -109,8 +109,8 @@ class TestRegisterRoute:
 
     def test_register_success(self, client):
         # SMTP is not configured in tests → email sending is skipped automatically
-        with patch('app.routers.auth.username_exists', return_value=False), \
-             patch('app.routers.auth.email_exists',    return_value=False), \
+        with patch('app.db.users.username_exists', return_value=False), \
+             patch('app.db.users.email_exists',    return_value=False), \
              patch('app.services.auth_service.register_user', return_value=99):
             r = client.post(self.URL, json=self.VALID)
         assert r.status_code == 200

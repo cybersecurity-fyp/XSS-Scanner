@@ -58,7 +58,7 @@ async def health_check():
     return JSONResponse(
         {'status': 'ok' if ok else 'degraded',
          'db':     'connected' if ok else 'unreachable',
-         'timestamp': datetime.utcnow().isoformat()},
+         'timestamp': datetime.now(timezone.utc).isoformat()},
         status_code=200 if ok else 503,
     )
 

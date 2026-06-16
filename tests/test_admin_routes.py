@@ -30,7 +30,7 @@ class TestListUsers:
         assert r.status_code == 403
 
     def test_admin_returns_user_list(self, client, admin_cookies):
-        with patch('app.db.users.get_all_users', return_value=SAMPLE_USERS):
+        with patch('app.routers.admin.get_all_users', return_value=SAMPLE_USERS):
             r = client.get(self.URL, cookies=admin_cookies)
         assert r.status_code == 200
         users = r.json()
@@ -38,14 +38,14 @@ class TestListUsers:
         assert len(users) == 3
 
     def test_admin_response_has_expected_fields(self, client, admin_cookies):
-        with patch('app.db.users.get_all_users', return_value=SAMPLE_USERS):
+        with patch('app.routers.admin.get_all_users', return_value=SAMPLE_USERS):
             r = client.get(self.URL, cookies=admin_cookies)
         user = r.json()[0]
         for field in ('id', 'username', 'email', 'role', 'email_verified'):
             assert field in user
 
     def test_response_does_not_contain_passwords(self, client, admin_cookies):
-        with patch('app.db.users.get_all_users', return_value=SAMPLE_USERS):
+        with patch('app.routers.admin.get_all_users', return_value=SAMPLE_USERS):
             r = client.get(self.URL, cookies=admin_cookies)
         for user in r.json():
             assert 'password' not in user
@@ -72,7 +72,7 @@ class TestDeleteUser:
 
     def test_admin_cannot_delete_protected_admin(self, client, admin_cookies):
         """delete_user_as_admin returns False for the default admin user."""
-        with patch('app.services.auth_service.delete_user_as_admin', return_value=False):
+        with patch('app.routers.admin.delete_user_as_admin', return_value=False):
             r = client.delete('/api/v1/admin/users/1', cookies=admin_cookies)
         assert r.status_code == 400
 
@@ -94,7 +94,7 @@ class TestAdminStats:
 
     def test_admin_returns_global_stats(self, client, admin_cookies):
         stats = {'total': 50, 'vulns': 12, 'health': 98.0}
-        with patch('app.db.scans.get_stats', return_value=stats):
+        with patch('app.routers.admin.get_stats', return_value=stats):
             r = client.get(self.URL, cookies=admin_cookies)
         assert r.status_code == 200
         data = r.json()
@@ -103,7 +103,7 @@ class TestAdminStats:
     def test_admin_stats_no_user_id_filter(self, client, admin_cookies):
         """Admin stats endpoint must NOT filter by user_id — it's global."""
         stats = {'total': 50, 'vulns': 12, 'health': 98.0}
-        with patch('app.db.scans.get_stats', return_value=stats) as mock_stats:
+        with patch('app.routers.admin.get_stats', return_value=stats) as mock_stats:
             client.get(self.URL, cookies=admin_cookies)
         # Called with no user_id argument (global stats)
         mock_stats.assert_called_once_with()

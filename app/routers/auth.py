@@ -28,6 +28,8 @@ async def login(form: LoginForm, request: Request):
         raise HTTPException(401, 'Invalid credentials')
     if result.get('__locked__'):
         raise HTTPException(429, f"Account locked. Try again in {result['minutes']} minute(s).")
+    if result.get('__unverified__'):
+        raise HTTPException(403, 'Please verify your email before logging in.')
     request.session.clear()
     request.session['user'] = result
     log.info('Login: %s', result.get('username'))

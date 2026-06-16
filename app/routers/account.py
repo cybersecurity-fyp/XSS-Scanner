@@ -90,7 +90,10 @@ async def get_prefs(request: Request):
 @router.post('/preferences')
 async def save_prefs(request: Request):
     user = require_auth(request)
-    body = await request.json()
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(400, 'Invalid JSON body')
     if not isinstance(body, dict):
         raise HTTPException(400, 'Invalid preferences format')
     if save_preferences(user['id'], body):

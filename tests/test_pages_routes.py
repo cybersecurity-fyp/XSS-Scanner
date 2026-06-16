@@ -88,7 +88,7 @@ class TestAuthenticatedPages:
         assert r.status_code == 200
 
     def test_settings_page_renders_200(self, client, auth_cookies):
-        with patch('app.db.users.get_preferences', return_value={}):
+        with patch('app.routers.pages.get_preferences', return_value={}):
             r = client.get('/settings', cookies=auth_cookies)
         assert r.status_code == 200
 
@@ -145,7 +145,7 @@ class TestPublicPages:
         assert r.status_code in (302, 307)
 
     def test_verify_email_with_token_renders(self, client):
-        with patch('app.services.auth_service.verify_email_token', return_value=True):
+        with patch('app.routers.pages.verify_email_token', return_value=True):
             r = client.get('/verify-email?token=testtoken123')
         assert r.status_code == 200
 
@@ -154,13 +154,13 @@ class TestPublicPages:
         assert r.status_code in (302, 307)
 
     def test_reset_password_invalid_token_renders_error(self, client):
-        with patch('app.services.auth_service.verify_reset_token', return_value=None):
+        with patch('app.routers.pages.verify_reset_token', return_value=None):
             r = client.get('/reset-password?token=badtoken')
         assert r.status_code == 200
 
     def test_reset_password_valid_token_renders_form(self, client):
         user = {'username': 'testuser'}
-        with patch('app.services.auth_service.verify_reset_token', return_value=user):
+        with patch('app.routers.pages.verify_reset_token', return_value=user):
             r = client.get('/reset-password?token=validtoken')
         assert r.status_code == 200
 

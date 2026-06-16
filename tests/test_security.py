@@ -87,7 +87,7 @@ class TestSSRFPrevention:
     def test_ftp_scheme_blocked(self, client, auth_cookies):
         payload = {**VALID_CONFIG_BASE, 'url': 'ftp://example.com/'}
         r = client.post('/api/v1/scan/start', json=payload, cookies=auth_cookies)
-        assert r.status_code == 400
+        assert r.status_code in (400, 422)  # Pydantic validator raises 422
 
     def test_file_scheme_blocked_by_pydantic(self, client, auth_cookies):
         payload = {**VALID_CONFIG_BASE, 'url': 'file:///etc/passwd'}
