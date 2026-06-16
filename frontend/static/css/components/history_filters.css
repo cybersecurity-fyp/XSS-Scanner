@@ -1,0 +1,15 @@
+/* ═══════════════════════════════════════════════════════
+   HISTORY FILTERS
+═══════════════════════════════════════════════════════ */
+.filter-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filter-select { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 30px 6px 11px; border-radius: 7px; font-family: var(--font-mono); font-size: 12px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a9ab8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; outline: none; transition: border-color 0.15s; }
+.filter-select:focus { border-color: var(--accent); }
+.search-wrap { position: relative; }
+.search-icon { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.search-input { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 12px 6px 30px; border-radius: 7px; font-family: var(--font-mono); font-size: 12px; outline: none; transition: border-color 0.15s; width: 200px; }
+.search-input:focus { border-color: var(--accent); }
+
+/* Bulk bar */
+#bulk-bar { display: none; align-items: center; gap: 10px; padding: 9px 13px; background: var(--accent-dim); border: 1px solid rgba(0,232,122,0.2); border-radius: 8px; margin-bottom: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+#bulk-bar.visible { display: flex; }
+.row-check { width: 14px; height: 14px; accent-color: var(--accent); cursor: pointer; }

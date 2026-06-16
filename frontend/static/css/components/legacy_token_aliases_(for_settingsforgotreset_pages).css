@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════════
+   LEGACY TOKEN ALIASES (for settings/forgot/reset pages)
+═══════════════════════════════════════════════════════ */
+:root, [data-theme="dark"] {
+  --g:   var(--accent);
+  --g2:  #00a855;
+  --g-d: var(--accent-dim);
+  --c:   var(--accent-2);
+  --c-d: var(--accent-2-dim);
+  --r:   var(--danger);
+  --r-d: var(--danger-dim);
+  --o:   var(--warn);
+  --bg0: #080c12;
+  --b:   var(--border);
+  --b2:  var(--borderMed);
+  --t:   var(--text);
+  --td:  var(--textSub);
+  --tm:  var(--textDim);
+  --font-hd: var(--font-display);
+  /* badge-cyan alias */
+  --cyan: var(--accent-2);
+}
+[data-theme="light"] {
+  --g:  var(--accent);
+  --g2: #007a40;
+  --g-d:var(--accent-dim);
+  --c:  var(--accent-2);
+  --r:  var(--danger);
+  --r-d:var(--danger-dim);
+  --o:  var(--warn);
+  --bg0:#f5f7fa;
+  --b:  var(--border);
+  --b2: var(--borderMed);
+  --t:  var(--text);
+  --td: var(--textSub);
+  --tm: var(--textDim);
+}
+/* badge-cyan class used in admin/history */
+.badge-cyan { background: var(--accent-2-dim); color: var(--accent-2); border: 1px solid rgba(0,201,255,0.2); }

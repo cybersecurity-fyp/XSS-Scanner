@@ -1,0 +1,15 @@
+
+<html>
+<body>
+
+<h3>Reflected XSS test</h3>
+
+Search: <span id="out"></span>
+
+<script>
+document.getElementById("out").innerHTML =
+new URLSearchParams(window.location.search).get("q");
+</script>
+
+</body>
+</html>

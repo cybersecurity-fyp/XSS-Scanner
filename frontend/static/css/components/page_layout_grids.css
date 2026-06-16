@@ -1,0 +1,7 @@
+/* ═══════════════════════════════════════════════════════
+   PAGE LAYOUT GRIDS
+═══════════════════════════════════════════════════════ */
+.stats-3col  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.dash-grid   { display: grid; grid-template-columns: 1fr 300px; gap: 16px; align-items: start; }
+.scan-layout { display: grid; grid-template-columns: 360px 1fr; gap: 16px; align-items: start; }
+.settings-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }

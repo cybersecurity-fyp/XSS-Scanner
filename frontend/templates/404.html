@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}404 Not Found{% endblock %}
+{% block page_title %}404{% endblock %}
+
+{% block content %}
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 120px);text-align:center;padding:40px 20px;">
+  <div style="font-family:var(--font-display);font-size:clamp(80px,18vw,140px);font-weight:900;color:var(--accent);line-height:1;margin-bottom:8px;letter-spacing:-4px;">404</div>
+  <div style="font-family:var(--font-mono);font-size:11px;color:var(--textDim);letter-spacing:2px;margin-bottom:16px;">// PAGE_NOT_FOUND</div>
+  <div style="font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--text);margin-bottom:10px;letter-spacing:2px;text-transform:uppercase;">Target Not Located</div>
+  <div style="font-size:13px;color:var(--textSub);max-width:360px;line-height:1.7;margin-bottom:28px;">
+    The page you're scanning for doesn't exist. It may have been moved, deleted, or the URL might be incorrect.
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <a href="/" class="btn btn-primary">← Back to Dashboard</a>
+    <a href="/scan" class="btn btn-ghost">Run a Scan</a>
+  </div>
+</div>
+{% endblock %}
