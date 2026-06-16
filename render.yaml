@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: xss-scanner
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SUPABASE_URL
+        value: https://wlzrvbiccbulbhcuotlx.supabase.co
+      - key: SUPABASE_SECRET_KEY
+        value: sb_secret_JdABbrlVqTXa9lpMr1LrdQ_IoTrj2-D
+      - key: SUPABASE_PUBLISHABLE_KEY
+        value: sb_publishable_tWJRz8Y2wI6cS0lGdHnbLQ_l73cZZ7i
+      - key: SESSION_SECRET
+        value: 1ea94ff780444608faa013636247bb8d3fed23c8d285d7a8ae71b78fb844b787
+      - key: GITHUB_CLIENT_ID
+        value: Ov23liQQ7EmlmJwJIlfh
+      - key: GITHUB_CLIENT_SECRET
+        value: f4c58f186be836c00bf0fc7ccd191a9a0ac19feb
+      - key: GOOGLE_CLIENT_ID
+        value: 289407265503-mirpj1sbqllocfm12mmu7jdd4a69p1ue.apps.googleusercontent.com
+      - key: GOOGLE_CLIENT_SECRET
+        value: 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
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: ""
+      - key: SMTP_PASS
+        value: ""
+      - key: SMTP_FROM
+        value: ""
+      - key: HTTPS_ONLY
+        value: "true"
+      - key: EXPOSE_DOCS
+        value: "false"
+      - key: APP_BASE_URL
+        sync: false
+      - key: GITHUB_REDIRECT_URI
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
