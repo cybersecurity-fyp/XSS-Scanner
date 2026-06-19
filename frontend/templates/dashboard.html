@@ -29,7 +29,7 @@
       </div>
       <div class="flex-1">
         <div class="stat-value">{{ stats.vulns }}</div>
-        <div class="stat-label">XSS Findings</div>
+        <div class="stat-label">XSS Reflection Points</div>
         <div class="stat-trend {% if stats.vulns == 0 %}up{% else %}down{% endif %}">
           {% if stats.vulns == 0 %}All targets clean{% else %}Requires remediation{% endif %}
         </div>

@@ -113,6 +113,13 @@ class ScanService:
             if config.get('ml_prefilter'):
                 await self._emit_ml_postfilter(state, on_log, payloads_file)
 
+            variants = ml_stats.get('payload_variants', 0)
+            if variants > 0:
+                await self._emit(state, on_log,
+                    f'[✓] 1 XSS reflection confirmed — {variants} exploit-capable payload variants detected')
+            elif vulnerabilities == 0:
+                await self._emit(state, on_log, '[✓] No XSS vulnerabilities detected')
+
             duration = (datetime.now() - started_at).total_seconds()
             save_scan(config['url'], 'Completed', vulnerabilities,
                       '\n'.join(state.logs), json.dumps(config), duration,
@@ -164,7 +171,7 @@ class ScanService:
             env=env,
         )
         state.process = process
-        vulnerabilities = 0
+        payload_variants = 0
 
         while True:
             raw = await process.stdout.readline()
@@ -175,11 +182,15 @@ class ScanService:
             line = raw.decode('utf-8', errors='replace').strip()
             if line:
                 await self._emit(state, on_log, line)
-                if xsstrike_runner.is_vulnerability_line(line):
-                    vulnerabilities += 1
+                if '[CONFIRMED XSS]' in line:
+                    payload_variants += 1
 
         await process.wait()
         ml_stats = xsstrike_runner.extract_ml_stats(state.logs)
+        ml_stats['payload_variants'] = payload_variants
+
+        # 1 reflection point found = 1 vulnerability; payload_variants = how many exploits work
+        vulnerabilities = 1 if payload_variants > 0 else 0
         return vulnerabilities, ml_stats
 
     async def _run_simulation(self, state: ScanState, url: str,
