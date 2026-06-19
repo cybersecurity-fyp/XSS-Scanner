@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 # Load .env from the project root (two levels up from this file: app/ -> xss_ui_new/)
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-load_dotenv(os.path.join(_ROOT, '.env'), override=True, encoding='utf-8')
+load_dotenv(os.path.join(_ROOT, '.env'), override=False, encoding='utf-8')
 
 
 def _require(key: str) -> str:
