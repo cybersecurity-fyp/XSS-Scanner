@@ -44,9 +44,12 @@ class Settings:
     supabase_secret_key: str = _require('SUPABASE_SECRET_KEY')
     supabase_publishable_key: str = os.getenv('SUPABASE_PUBLISHABLE_KEY', '')
 
-    # Session
+    # Session — auto-enable HTTPS on Railway/any production env that sets RAILWAY_PUBLIC_DOMAIN
     session_secret: str = _require_session_secret()
-    https_only: bool    = os.getenv('HTTPS_ONLY', 'false').lower() == 'true'
+    https_only: bool    = (
+        os.getenv('HTTPS_ONLY', 'false').lower() == 'true' or
+        bool(os.getenv('RAILWAY_PUBLIC_DOMAIN', ''))
+    )
 
     # SMTP
     smtp_host: str  = os.getenv('SMTP_HOST', 'smtp.gmail.com')

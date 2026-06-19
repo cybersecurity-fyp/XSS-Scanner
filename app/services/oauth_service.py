@@ -86,7 +86,12 @@ async def exchange_google_code(code: str) -> Optional[str]:
             'redirect_uri':  settings.google_redirect_uri,
             'grant_type':    'authorization_code',
         })
-        return resp.json().get('access_token')
+        data = resp.json()
+        if 'error' in data:
+            import logging
+            logging.getLogger('xssniper').error('Google token exchange error: %s', data)
+            return None
+        return data.get('access_token')
 
 
 async def get_google_profile(token: str) -> Optional[dict]:
