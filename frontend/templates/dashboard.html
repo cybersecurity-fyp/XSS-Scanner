@@ -143,17 +143,17 @@
       <h2 class="card-label" id="vuln-ratio-heading">Vulnerability Ratio</h2>
       <div class="donut-wrap">
         <canvas id="vulnChart"
-                data-vulns="{{ stats.vulns }}" data-total="{{ stats.total }}"
+                data-vulns="{{ stats.vulnerable_scans }}" data-total="{{ stats.total }}"
                 role="img"
-                aria-label="Doughnut chart: {{ stats.vulns }} vulnerable, {{ [0, stats.total - stats.vulns]|max }} clean out of {{ stats.total }} total scans"></canvas>
+                aria-label="Doughnut chart: {{ stats.vulnerable_scans }} vulnerable scans, {{ stats.clean_scans }} clean scans out of {{ stats.total }} total"></canvas>
       </div>
       <div class="vuln-ratio-grid" aria-hidden="true">
         <div class="vuln-ratio-cell">
-          <div class="vuln-ratio-num danger">{{ stats.vulns }}</div>
+          <div class="vuln-ratio-num danger">{{ stats.vulnerable_scans }}</div>
           <div class="vuln-ratio-label">VULNERABLE</div>
         </div>
         <div class="vuln-ratio-cell">
-          <div class="vuln-ratio-num accent">{{ [0, stats.total - stats.vulns]|max }}</div>
+          <div class="vuln-ratio-num accent">{{ stats.clean_scans }}</div>
           <div class="vuln-ratio-label">CLEAN</div>
         </div>
       </div>

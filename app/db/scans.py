@@ -49,16 +49,19 @@ def get_stats(user_id: Optional[int] = None) -> dict:
 
     total = len(rows)
     vulns = sum(r.get('vulnerabilities', 0) or 0 for r in rows)
+    vulnerable_scans = sum(1 for r in rows if (r.get('vulnerabilities', 0) or 0) > 0)
+    clean_scans = total - vulnerable_scans
 
     cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
     recent = [r for r in rows if (r.get('date') or '') >= cutoff]
     if recent:
-        completed = sum(1 for r in recent if r.get('status') == 'Completed')
-        health = round(completed * 100.0 / len(recent), 1)
+        clean_recent = sum(1 for r in recent if (r.get('vulnerabilities', 0) or 0) == 0)
+        health = round(clean_recent * 100.0 / len(recent), 1)
     else:
         health = 100.0
 
-    return {'total': total, 'vulns': vulns, 'health': health}
+    return {'total': total, 'vulns': vulns, 'health': health,
+            'vulnerable_scans': vulnerable_scans, 'clean_scans': clean_scans}
 
 
 def get_history(limit: int = 100, user_id: Optional[int] = None) -> list[dict]:
