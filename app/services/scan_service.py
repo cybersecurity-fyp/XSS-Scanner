@@ -111,9 +111,7 @@ class ScanService:
                 )
 
             if config.get('ml_prefilter'):
-                confirmed = await self._emit_ml_postfilter(state, on_log, payloads_file)
-                if confirmed > 0:
-                    vulnerabilities = confirmed
+                await self._emit_ml_postfilter(state, on_log, payloads_file)
 
             duration = (datetime.now() - started_at).total_seconds()
             save_scan(config['url'], 'Completed', vulnerabilities,
