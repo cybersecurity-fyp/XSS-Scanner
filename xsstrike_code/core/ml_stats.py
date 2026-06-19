@@ -10,6 +10,8 @@ class MLStats:
         if cls.printed:
             return
         cls.printed = True
+        if cls.total_payloads == 0:
+            return  # ML didn't run (crawl/non-ML path) — skip report
 
         print("\n====== ML INTEGRATION REPORT ======")
         print(f"Total payloads generated: {cls.total_payloads}")

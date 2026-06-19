@@ -241,16 +241,15 @@ class ScanService:
                                    on_log: Optional[AsyncLogCallback],
                                    payloads_file: str) -> int:
         """Run the real ML postfilter model on payloads collected during the scan."""
-        await self._emit(state, on_log, '[ML] Running ML postfilter on collected payloads...')
-
         payloads = []
         if os.path.exists(payloads_file):
             with open(payloads_file, 'r', encoding='utf-8') as f:
                 payloads = [line.strip() for line in f if line.strip()]
 
         if not payloads:
-            await self._emit(state, on_log, '[ML] No payloads collected for postfiltering')
-            return 0
+            return 0  # crawl/non-ML path — silently skip postfilter
+
+        await self._emit(state, on_log, '[ML] Running ML postfilter on collected payloads...')
 
         await self._emit(state, on_log,
             f'[ML] Postfiltering {len(payloads)} collected payload(s) with trained model...')
